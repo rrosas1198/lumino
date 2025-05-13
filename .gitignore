@@ -1,0 +1,40 @@
+# Dependencies
+node_modules
+
+# Logs
+*.log
+
+# Editors
+.idea
+*.code-workspace
+
+# Temp directories
+.tmp
+.cache
+*.tmp
+
+# Generated dirs
+dist
+.turbo
+
+# Generated files
+/tsconfig.build.tsbuildinfo
+
+# Coverage reports
+coverage
+*.lcov
+.nyc_output
+
+# OSX
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent

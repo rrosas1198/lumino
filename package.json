@@ -1,0 +1,15 @@
+{
+    "name": "@lumino/root",
+    "private": true,
+    "scripts": {
+        "build": "turbo build",
+        "release": "npm run build && changeset publish"
+    },
+    "devDependencies": {
+        "@changesets/cli": "^2.29.4",
+        "@types/node": "^22.15.17",
+        "eslint": "^9.26.0",
+        "stylelint": "^16.19.1",
+        "turbo": "latest"
+    }
+}
