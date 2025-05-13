@@ -1,11 +1,15 @@
 {
     "name": "@lumino/root",
+    "type": "module",
     "private": true,
+    "packageManager": "pnpm@10.10.0",
+    "license": "MIT",
     "scripts": {
         "build": "turbo build",
         "release": "npm run build && changeset publish"
     },
     "devDependencies": {
+        "@antfu/eslint-config": "^4.13.0",
         "@changesets/cli": "^2.29.4",
         "@types/node": "^22.15.17",
         "eslint": "^9.26.0",
