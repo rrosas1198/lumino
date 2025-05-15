@@ -1,0 +1,13 @@
+{
+    "name": "@lumino/components",
+    "type": "module",
+    "version": "0.1.0",
+    "license": "MIT",
+    "main": "./dist/index.mjs",
+    "types": "./dist/index.d.ts",
+    "files": ["dist"],
+    "devDependencies": {
+        "@lumino/kit": "workspace:^",
+        "@lumino/theme": "workspace:^"
+    }
+}
