@@ -1,4 +1,5 @@
 import type { ExtractPropTypes, PropType } from "vue";
+import { useLogger } from "./logger";
 import type { IDictionary, INullable } from "./types";
 import { unique } from "./utils";
 
@@ -16,6 +17,8 @@ export interface IPropOptions<T = any, D = T> {
 export type IObjectPropsOptions<T = IDictionary> = {
     [K in keyof T]: IPropOptions<T[K]>;
 };
+
+const logger = useLogger("kit:props");
 
 export function buildProps<T extends IObjectPropsOptions>(props: T) {
     const props_ = Object.entries(props).map(([key, prop]) => [key, {
@@ -43,11 +46,7 @@ function _validatorFactory<T extends IPropOptions>(key: string, prop: T): IPropV
 
         if (!isValid) {
             const display = allowed.map(val => JSON.stringify(val)).join(", ");
-
-            console.warn(
-                `Invalid prop: validation failed for prop ${key}.`,
-                `Expected one of [${display}], got value ${JSON.stringify(value)}`
-            );
+            logger.warn(`Invalid prop: validation failed for prop ${key}.\n  Expected one of [${display}], got value ${JSON.stringify(value)}`);
         }
 
         return true;
