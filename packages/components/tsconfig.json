@@ -1,6 +1,12 @@
 {
     "extends": "../../tsconfig.json",
     "compilerOptions": {
-        "baseUrl": "./"
+        "baseUrl": "./",
+        "paths": {
+            "@lumino/kit": [
+                "../../packages/kit/src",
+                "../../packages/kit/src/index.ts"
+            ]
+        }
     }
 }

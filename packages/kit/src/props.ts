@@ -18,7 +18,7 @@ export type IObjectPropsOptions<T = IDictionary> = {
     [K in keyof T]: IPropOptions<T[K]>;
 };
 
-const logger = useLogger("kit:props");
+const logger = useLogger();
 
 export function buildProps<T extends IObjectPropsOptions>(props: T) {
     const props_ = Object.entries(props).map(([key, prop]) => [key, {
