@@ -1,7 +1,6 @@
-import { useLogger } from "@lumino/kit";
+import { useLogger, useRoute } from "@lumino/kit";
 import { withQuery } from "ufo";
 import { computed } from "vue";
-import { useRoute } from "src/composables";
 import type { IAnchorProps } from "./anchor.props";
 
 const logger = useLogger("anchor");

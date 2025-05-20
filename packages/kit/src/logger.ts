@@ -1,5 +1,7 @@
-import { MaybeRef, unref } from "vue";
-import { isBrowser } from "./context";
+import type { MaybeRef } from "vue";
+import { computed, unref } from "vue";
+import { isBrowser } from "./utils";
+import { useContext } from "./context";
 
 export enum LogLevelEnum {
     DEBUG = 0,
@@ -23,7 +25,11 @@ const BROWSER_STYLES: Record<LogLevelEnum, string> = {
     [LogLevelEnum.ERROR]: "color: #dc3546;"
 };
 
-export function useLogger(namespace?: string, logLevel: MaybeRef<LogLevelEnum> = LogLevelEnum.DEBUG) {
+export function useLogger(namespace?: string, level?: MaybeRef<LogLevelEnum>) {
+    const context = useContext();
+
+    const logLevel = computed(() => unref(level) || context.get().logLevel);
+
     const debug = (...params: any[]) => _printLog(LogLevelEnum.DEBUG, params);
     const info = (...params: any[]) => _printLog(LogLevelEnum.INFO, params);
     const warn = (...params: any[]) => _printLog(LogLevelEnum.WARN, params);
@@ -44,7 +50,7 @@ export function useLogger(namespace?: string, logLevel: MaybeRef<LogLevelEnum> =
     };
 
     const _shouldLog = (level: LogLevelEnum) => {
-        return level.valueOf() >= unref(logLevel).valueOf();
+        return level.valueOf() >= logLevel.value.valueOf();
     }
 
     return { debug, info, warn, error };

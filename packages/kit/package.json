@@ -9,7 +9,11 @@
     "peerDependencies": {
         "vue": "^3.5.0"
     },
+    "dependencies": {
+        "unctx": "^2.4.1"
+    },
     "devDependencies": {
-        "vue": "^3.5.14"
+        "vue": "^3.5.14",
+        "vue-router": "^4.5.1"
     }
 }

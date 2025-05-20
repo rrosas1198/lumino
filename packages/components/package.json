@@ -10,13 +10,11 @@
         "vue": "^3.5.0"
     },
     "dependencies": {
-        "ufo": "^1.6.1",
-        "unctx": "^2.4.1"
+        "ufo": "^1.6.1"
     },
     "devDependencies": {
         "@lumino/kit": "workspace:^",
         "@lumino/theme": "workspace:^",
-        "vue": "^3.5.14",
-        "vue-router": "^4.5.1"
+        "vue": "^3.5.14"
     }
 }

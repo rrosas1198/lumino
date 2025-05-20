@@ -26,9 +26,9 @@ export function buildProps<T extends IObjectPropsOptions>(props: T) {
         validator: _validatorFactory(key, prop)
     }] as [string, IPropOptions]);
 
-    return (defaults?: ExtractPropTypes<T>) => {
+    return (defaults?: Partial<ExtractPropTypes<T>>) => {
         const withDefaults = _applyDefaults(props_, defaults || {} as any);
-        return withDefaults.reduce((acc, [key, prop]) => Object.assign(acc, { [key]: prop }), {} as { [K in keyof T]: T[K] });
+        return Object.fromEntries(withDefaults) as { [K in keyof T]: T[K] };
     };
 }
 

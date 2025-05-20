@@ -32,9 +32,6 @@ importers:
       ufo:
         specifier: ^1.6.1
         version: 1.6.1
-      unctx:
-        specifier: ^2.4.1
-        version: 2.4.1
     devDependencies:
       '@lumino/kit':
         specifier: workspace:^
@@ -45,15 +42,19 @@ importers:
       vue:
         specifier: ^3.5.14
         version: 3.5.14(typescript@5.8.3)
-      vue-router:
-        specifier: ^4.5.1
-        version: 4.5.1(vue@3.5.14(typescript@5.8.3))
 
   packages/kit:
+    dependencies:
+      unctx:
+        specifier: ^2.4.1
+        version: 2.4.1
     devDependencies:
       vue:
         specifier: ^3.5.14
         version: 3.5.14(typescript@5.8.3)
+      vue-router:
+        specifier: ^4.5.1
+        version: 4.5.1(vue@3.5.14(typescript@5.8.3))
 
   packages/theme: {}
 

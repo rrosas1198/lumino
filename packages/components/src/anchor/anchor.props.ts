@@ -1,5 +1,5 @@
 import { buildProps } from "@lumino/kit";
-import { ExtractPropTypes } from "vue";
+import type { ExtractPropTypes } from "vue";
 
 export type IAnchorProps = ExtractPropTypes<ReturnType<typeof buildAnchorProps>>;
 
