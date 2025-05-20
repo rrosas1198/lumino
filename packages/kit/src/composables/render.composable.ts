@@ -1,4 +1,4 @@
-import { VNode } from "vue";
+import type { VNode } from "vue";
 import { useCurrentInstance } from "./instance.composable";
 
 export function useRender(render: () => VNode): void {

@@ -1,6 +1,7 @@
 {
     "extends": "../../tsconfig.json",
     "compilerOptions": {
+        "jsx": "preserve",
         "baseUrl": "./",
         "paths": {
             "@lumino/kit": [
@@ -8,5 +9,8 @@
                 "../../packages/kit/src/index.ts"
             ]
         }
+    },
+    "vueCompilerOptions": {
+        "jsxSlots": true
     }
 }
