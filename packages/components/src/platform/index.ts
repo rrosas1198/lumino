@@ -26,7 +26,7 @@ export function useLumino(): ILuminoContext {
 let _luminoState: INullable<ILuminoState> = null;
 
 export function createLumino(init: IDeepPartial<ILuminoContext> = {}): void {
-    if (_luminoState) {
+    if (!!_luminoState) {
         logger.warn("Lumino context has already been created. Skipping re-creation.");
         return;
     }
