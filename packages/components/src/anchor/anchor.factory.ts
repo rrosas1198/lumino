@@ -11,8 +11,8 @@ export function useAnchor(props: IAnchorProps) {
     const isLink = computed(() => props.link && !!props.href);
     const isNuxtLink = computed(() => isLink.value && props.nuxt);
 
-    const query = computed(() => props.preserveQuery ? route.value?.query.q : undefined);
-    const origin = computed(() => props.includeOrigin ? props.origin : undefined);
+    const query = computed(() => (props.preserveQuery ? route.value?.query.q : undefined));
+    const origin = computed(() => (props.includeOrigin ? props.origin : undefined));
 
     const toHref = computed(() => {
         if (!isLink.value) return;

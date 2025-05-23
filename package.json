@@ -9,11 +9,9 @@
         "release": "npm run build && changeset publish"
     },
     "devDependencies": {
-        "@antfu/eslint-config": "^4.13.0",
+        "@biomejs/biome": "1.9.4",
         "@changesets/cli": "^2.29.4",
         "@types/node": "^22.15.17",
-        "eslint": "^9.26.0",
-        "stylelint": "^16.19.1",
         "turbo": "latest"
     }
 }

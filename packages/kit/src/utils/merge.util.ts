@@ -1,6 +1,4 @@
-type IUnionToIntersection<U> = (
-    U extends any ? (k: U) => void : never
-) extends (k: infer I) => void ? I : never;
+type IUnionToIntersection<U> = (U extends any ? (k: U) => void : never) extends (k: infer I) => void ? I : never;
 
 export function merge<T extends object, S extends object[]>(target: T, ...sources: S): T & IUnionToIntersection<S[number]> {
     if (!sources.length) {
@@ -11,15 +9,21 @@ export function merge<T extends object, S extends object[]>(target: T, ...source
 
     if (_isObject(target) && _isObject(source)) {
         return _mergeObject(target, source) as T & IUnionToIntersection<S[number]>;
-    } else if (Array.isArray(target) && Array.isArray(source)) {
-        return _mergeArray(target, source) as any;
-    } else if (target instanceof Set && source instanceof Set) {
-        return _mergeSet(target, source) as any;
-    } else if (target instanceof Map && source instanceof Map) {
-        return _mergeMap(target, source) as any;
-    } else {
-        return Object.assign(target as any, source);
     }
+
+    if (Array.isArray(target) && Array.isArray(source)) {
+        return _mergeArray(target, source) as any;
+    }
+
+    if (target instanceof Set && source instanceof Set) {
+        return _mergeSet(target, source) as any;
+    }
+
+    if (target instanceof Map && source instanceof Map) {
+        return _mergeMap(target, source) as any;
+    }
+
+    return Object.assign(target as any, source);
 }
 
 function _mergeObject<T extends object, U extends object>(target: T, source: U): T & U {
@@ -42,7 +46,9 @@ function _mergeArray<T>(target: T[], source: T[]) {
 }
 
 function _mergeSet<T>(target: Set<T>, source: Set<T>) {
-    source.forEach(value => target.add(value));
+    for (const value of source) {
+        target.add(value);
+    }
     return target;
 }
 
@@ -52,5 +58,5 @@ function _mergeMap<K, V>(target: Map<K, V>, source: Map<K, V>) {
 }
 
 function _isObject(item: any): item is object {
-    return (item && typeof item === "object" && !Array.isArray(item));
+    return item && typeof item === "object" && !Array.isArray(item);
 }

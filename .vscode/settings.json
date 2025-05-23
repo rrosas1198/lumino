@@ -1,53 +1,31 @@
 {
     "files.exclude": {
+        "**/.git": true,
         "**/.turbo": true,
         "**/.DS_Store": true,
-        "**/dist": true,
         "**/node_modules": true
     },
-    "editor.formatOnSave": false,
-    "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": "explicit",
-        "source.fixAll.stylelint": "explicit",
-        "source.organizeImports": "never"
-    },
+    "eslint.enable": false,
     "prettier.enable": false,
-    "stylelint.validate": [
-        "css",
-        "scss"
-    ],
-    "eslint.useFlatConfig": true,
-    "eslint.rules.customizations": [
-        { "rule": "style/*", "severity": "off" },
-        { "rule": "format/*", "severity": "off" },
-        { "rule": "*-indent", "severity": "off" },
-        { "rule": "*-spacing", "severity": "off" },
-        { "rule": "*-spaces", "severity": "off" },
-        { "rule": "*-order", "severity": "off" },
-        { "rule": "*-dangle", "severity": "off" },
-        { "rule": "*-newline", "severity": "off" },
-        { "rule": "*quotes", "severity": "off" },
-        { "rule": "*semi", "severity": "off" }
-    ],
-    "eslint.validate": [
-        "javascript",
-        "javascriptreact",
-        "typescript",
-        "typescriptreact",
-        "vue",
-        "html",
-        "markdown",
-        "json",
-        "jsonc",
-        "yaml",
-        "toml",
-        "xml",
-        "css",
-        "scss"
-    ],
+    "editor.formatOnSave": true,
+    "[yaml]": {
+        "editor.defaultFormatter": "biomejs.biome"
+    },
+    "[vue]": {
+        "editor.defaultFormatter": "biomejs.biome"
+    },
+    "[json]": {
+        "editor.defaultFormatter": "biomejs.biome"
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "biomejs.biome"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "biomejs.biome"
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "biomejs.biome"
+    },
     "cSpell.language": "en",
-    "cSpell.words": [
-        "lumino",
-        "nuxt"
-    ]
+    "cSpell.words": ["lumino", "nuxt"]
 }

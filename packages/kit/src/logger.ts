@@ -12,16 +12,16 @@ export enum LogLevelEnum {
 
 const ANSI_RESET = "\x1b[0m";
 const ANSI_CODES: Record<LogLevelEnum, string> = {
-    [LogLevelEnum.DEBUG]: "\x1b[38;2;13;110;253m",  // #0d6efd
-    [LogLevelEnum.INFO]:  "",                       // default terminal color
-    [LogLevelEnum.WARN]:  "\x1b[38;2;255;193;7m",   // #ffc107
-    [LogLevelEnum.ERROR]: "\x1b[38;2;220;52;70m"    // #dc3546
+    [LogLevelEnum.DEBUG]: "\x1b[38;2;13;110;253m", // #0d6efd
+    [LogLevelEnum.INFO]: "", // default terminal color
+    [LogLevelEnum.WARN]: "\x1b[38;2;255;193;7m", // #ffc107
+    [LogLevelEnum.ERROR]: "\x1b[38;2;220;52;70m" // #dc3546
 };
 
 const BROWSER_STYLES: Record<LogLevelEnum, string> = {
-    [LogLevelEnum.DEBUG]: "color: #0d6efd;",  
-    [LogLevelEnum.INFO]:  "",                       // default browser color
-    [LogLevelEnum.WARN]:  "color: #ffc107;", 
+    [LogLevelEnum.DEBUG]: "color: #0d6efd;",
+    [LogLevelEnum.INFO]: "", // default browser color
+    [LogLevelEnum.WARN]: "color: #ffc107;",
     [LogLevelEnum.ERROR]: "color: #dc3546;"
 };
 
@@ -39,7 +39,7 @@ export function useLogger(namespace?: string, level?: MaybeRef<LogLevelEnum>) {
         if (!_shouldLog(level)) return;
 
         const name = level === LogLevelEnum.DEBUG ? "log" : LogLevelEnum[level].toLowerCase();
-        const badge = !!namespace ? `[${namespace}] ` : "";
+        const badge = namespace ? `[${namespace}] ` : "";
         const consola = Reflect.get(console, name) || console.log;
 
         if (isBrowser()) {
@@ -51,7 +51,7 @@ export function useLogger(namespace?: string, level?: MaybeRef<LogLevelEnum>) {
 
     const _shouldLog = (level: LogLevelEnum) => {
         return level.valueOf() >= logLevel.value.valueOf();
-    }
+    };
 
     return { debug, info, warn, error };
 }

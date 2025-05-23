@@ -1,7 +1,7 @@
 import { createContext as createSingleton } from "unctx";
 import { reactive, readonly } from "vue";
 import { LogLevelEnum, useLogger } from "./logger";
-import { IDeepReadonly, IDeepPartial, INullable } from "./types";
+import type { IDeepReadonly, IDeepPartial, INullable } from "./types";
 import { merge } from "./utils";
 
 export interface IContext {
@@ -27,7 +27,7 @@ export function useContext(): IContext {
 let _contextState: INullable<IContextState> = null;
 
 export function createContext(init: IDeepPartial<IContext> = {}): void {
-    if (!!_contextState) {
+    if (_contextState) {
         logger.warn("Context has already been created. Skipping re-creation.");
         return;
     }
@@ -41,7 +41,7 @@ export function createContext(init: IDeepPartial<IContext> = {}): void {
     context.set({
         get: () => readonly(_contextState!),
         set: (newState: IDeepPartial<IContextState>) => {
-            if (!!_contextState) {
+            if (_contextState) {
                 merge(_contextState, newState);
             } else {
                 logger.error("Context state not initialized. Call createContext first.");
