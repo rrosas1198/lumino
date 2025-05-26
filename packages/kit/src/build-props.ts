@@ -31,6 +31,13 @@ export function buildProps<T extends IDictionary<IProp>>(props: T) {
     };
 }
 
+export function buildListenerProp<T>(defaultValue?: T): IPropOptions<T> {
+    return {
+        type: Function as PropType<T>,
+        default: defaultValue
+    };
+}
+
 function _normalizeProps<T extends IDictionary<IProp>>(props: T) {
     return Object.entries(props)
         .map(([key, option]) => [key, _normalizeProp(key, option)] as [string, IPropOptions])
