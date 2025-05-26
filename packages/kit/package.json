@@ -6,6 +6,9 @@
     "main": "./dist/index.mjs",
     "types": "./dist/index.d.ts",
     "files": ["dist"],
+    "scripts": {
+        "build": "unbuild"
+    },
     "peerDependencies": {
         "vue": "^3.5.0"
     },
@@ -13,6 +16,7 @@
         "unctx": "^2.4.1"
     },
     "devDependencies": {
+        "unbuild": "^3.5.0",
         "vue": "^3.5.14",
         "vue-router": "^4.5.1"
     }
