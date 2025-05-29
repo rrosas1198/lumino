@@ -3,8 +3,8 @@ import { defineComponent } from "vue";
 import { buildButtonProps } from "./button.props";
 import { useAnchor } from "src/anchor";
 
-export const AriButton = defineComponent({
-    name: "AriButton",
+export const VButton = defineComponent({
+    name: "VButton",
     props: buildButtonProps(),
     setup(props, { slots }) {
         const anchor = useAnchor(props);
@@ -80,4 +80,4 @@ export const AriButton = defineComponent({
     }
 });
 
-export type AriButton = InstanceType<typeof AriButton>;
+export type VButton = InstanceType<typeof VButton>;
