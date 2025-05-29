@@ -1,3 +1,4 @@
+export type IArrayable<T> = T | T[];
 export type INullable<T> = T | null | undefined;
 export type IDictionary<T = any> = Record<string, T>;
 export type IDeepPartial<T> = { [K in keyof T]?: IDeepPartial<T[K]> };

@@ -1,5 +1,6 @@
 export * from "./composables";
 export * from "./props";
+export * from "./selection-control";
 export * from "./types";
 export * from "./utils";
 export * from "./build-props";

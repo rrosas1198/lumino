@@ -1,4 +1,7 @@
 import { buildProps } from "@lumino/kit";
+import type { ExtractPropTypes } from "vue";
+
+export type IFieldProps = ExtractPropTypes<ReturnType<typeof buildFieldProps>>;
 
 export const buildFieldProps = buildProps({
     id: {

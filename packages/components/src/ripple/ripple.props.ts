@@ -1,4 +1,7 @@
 import { buildProps } from "@lumino/kit";
+import type { ExtractPropTypes } from "vue";
+
+export type IRippleProps = ExtractPropTypes<ReturnType<typeof buildRippleProps>>;
 
 export const buildRippleProps = buildProps({
     disabled: {
