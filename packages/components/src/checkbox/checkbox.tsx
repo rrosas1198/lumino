@@ -1,6 +1,6 @@
 import type { ISelectionControlValue } from "@lumino/kit";
 import { useRender, useSelectionControl } from "@lumino/kit";
-import { computed, defineComponent, ref, useModel, useTemplateRef } from "vue";
+import { computed, defineComponent, ref, useModel } from "vue";
 import { buildCheckboxProps } from "./checkbox.props";
 
 export const VCheckbox = defineComponent({
@@ -10,8 +10,8 @@ export const VCheckbox = defineComponent({
         event: "update:modelValue"
     },
     emits: {
-        "click": (_event: MouseEvent) => void 0,
-        "change": (_value: ISelectionControlValue, _event: Event) => void 0,
+        click: (_event: MouseEvent) => void 0,
+        change: (_value: ISelectionControlValue, _event: Event) => void 0,
         "update:modelValue": (_value: boolean, _event: Event) => void 0,
         "update:indeterminate": (_value: boolean, _event: Event) => void 0
     },
@@ -19,7 +19,7 @@ export const VCheckbox = defineComponent({
     setup(props, { emit, slots }) {
         const { model, value } = useSelectionControl(props as any);
 
-        const proxy = useTemplateRef<HTMLInputElement>("proxy");
+        const proxy = ref<HTMLInputElement>();
         const indeterminate = useModel(props, "indeterminate");
 
         const focused = ref(false);
@@ -71,14 +71,14 @@ export const VCheckbox = defineComponent({
                 <div
                     id={props.id}
                     class={{
-                        "checkbox": true,
+                        checkbox: true,
                         "checkbox--checked": model.value,
                         "checkbox--focused": focused.value,
-                        "checkbox--disabled": props.disabled
+                        "checkbox--disabled": props.disabled,
                     }}
                     onKeydown={onKeyDown}
                 >
-                    <div class="checkbox__control" v-ripple={{ unbounded: true }}>
+                    <div class="checkbox__control">
                         <input
                             ref={proxy}
                             id={`${props.id}_native`}

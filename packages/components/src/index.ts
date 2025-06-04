@@ -4,3 +4,4 @@ export * from "./checkbox";
 export * from "./field";
 export * from "./ripple";
 export * from "./text-field";
+export * from "./textarea";

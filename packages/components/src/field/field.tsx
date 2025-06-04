@@ -1,6 +1,6 @@
+import { useRender } from "@lumino/kit";
 import { defineComponent, useModel } from "vue";
 import { buildFieldProps } from "./field.props";
-import { useRender } from "@lumino/kit";
 
 export const VField = defineComponent({
     name: "VField",
@@ -56,3 +56,5 @@ export const VField = defineComponent({
         return {};
     }
 });
+
+export type VField = InstanceType<typeof VField>;

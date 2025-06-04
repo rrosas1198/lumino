@@ -1,11 +1,11 @@
 import { useRender } from "@lumino/kit";
 import { VField } from "src/field";
 import { defineComponent, onMounted, ref, useModel } from "vue";
-import { buildTextFieldProps } from "./text-field.props";
+import { buildTextareaProps } from "./textarea.props";
 
-export const VTextField = defineComponent({
-    name: "VTextField",
-    props: buildTextFieldProps(),
+export const VTextarea = defineComponent({
+    name: "VTextarea",
+    props: buildTextareaProps(),
     emits: {
         "input": (_value: string, _event: Event) => void 0
     },
@@ -27,14 +27,14 @@ export const VTextField = defineComponent({
         });
 
         useRender(() => {
-            const _renderInput = () => (
-                <input
+            const _renderTextarea = () => (
+                <textarea
                     ref={proxy}
                     id={`${props.id}_native`}
                     name={`${props.id}_native`}
-                    class="text-field__native input"
-                    type={props.type}
+                    class="textarea__native input"
                     value={model.value}
+                    rows={props.rows}
                     disabled={props.disabled}
                     readonly={props.readonly}
                     required={props.required}
@@ -52,7 +52,7 @@ export const VTextField = defineComponent({
             );
 
             return (
-                <div id={props.id} class="text-field">
+                <div id={props.id} class="textarea">
                     <VField
                         id={`${props.id}_field`}
                         label={props.label}
@@ -64,13 +64,13 @@ export const VTextField = defineComponent({
                             ...slots,
                             default: () => {
                                 <Fragment>
-                                    {_renderInput()}
+                                    {_renderTextarea()}
                                     {!props.hideMessage && _renderMessage()}
                                 </Fragment>
                             }
                         }} */}
 
-                        {_renderInput()}
+                        {_renderTextarea()}
                     </VField>
 
                     {!props.hideMessage && _renderMessage()}
@@ -82,4 +82,4 @@ export const VTextField = defineComponent({
     }
 });
 
-export type VTextField = InstanceType<typeof VTextField>;
+export type VTextarea = InstanceType<typeof VTextarea>;

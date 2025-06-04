@@ -1,7 +1,7 @@
 import { useRender } from "@lumino/kit";
-import { defineComponent } from "vue";
-import { buildButtonProps } from "./button.props";
 import { useAnchor } from "src/anchor";
+import { defineComponent, resolveComponent } from "vue";
+import { buildButtonProps } from "./button.props";
 
 export const VButton = defineComponent({
     name: "VButton",
@@ -20,7 +20,7 @@ export const VButton = defineComponent({
         };
 
         useRender(() => {
-            const Element = (anchor.isLink.value ? (anchor.isNuxtLink.value ? "NuxtLink" : "a") : props.tag || "button") as any;
+            const Element = (anchor.isLink.value ? (anchor.isNuxtLink.value ? resolveComponent("NuxtLink") : "a") : props.tag || "button") as any;
 
             const isLoading = props.loading && !props.disabled;
             const hasPrepend = isLoading || !!slots.prepend;
@@ -45,8 +45,8 @@ export const VButton = defineComponent({
                     name={props.name || props.id}
                     disabled={props.disabled}
                     type={props.link ? undefined : props.type}
-                    to={anchor.isNuxtLink.value && anchor.toHref.value}
-                    href={!anchor.isNuxtLink.value && anchor.toHref.value}
+                    to={anchor.isNuxtLink.value ? anchor.toHref.value : undefined}
+                    href={!anchor.isNuxtLink.value ? anchor.toHref.value : undefined}
                     title={props.title}
                     download={props.link && props.download}
                     aria-live={props.ariaLive}
@@ -65,7 +65,6 @@ export const VButton = defineComponent({
                         "button--icon": props.icon,
                         "button--square": props.square
                     }}
-                    v-ripple={{ disabled: props.disabled, unbounded: props.icon && !props.square }}
                     onClick={onClick}
                     onTouchstart={onTouchstart}
                 >
