@@ -1,7 +1,7 @@
-import type { ISelectionControlProps } from "./selection-control.props";
-import type { ISelectionControlValue } from "./selection-control.interface";
-import { computed, useModel } from "vue";
 import { equal } from "src/utils";
+import { computed, nextTick, useModel } from "vue";
+import type { ISelectionControlValue } from "./selection-control.interface";
+import type { ISelectionControlProps } from "./selection-control.props";
 
 export function useSelectionControl(props: ISelectionControlProps) {
     const modelValue = useModel(props, "modelValue");
@@ -28,7 +28,10 @@ export function useSelectionControl(props: ISelectionControlProps) {
 
             const current = value ? trueValue.value : falseValue.value;
             const newValue = _getSetterValue(current);
-            modelValue.value = newValue as any;
+
+            nextTick(() => {
+                modelValue.value = newValue as any;
+            });
         }
     });
 

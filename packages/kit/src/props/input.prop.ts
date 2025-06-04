@@ -1,5 +1,5 @@
-import type { PropType } from "vue";
 import { buildProps } from "src/build-props";
+import type { PropType } from "vue";
 
 export type IInputMode = "email" | "search" | "tel" | "text" | "url" | "none" | "numeric" | "decimal";
 

@@ -58,7 +58,7 @@ function _normalizeProp<T>(key: string, prop: IProp<T>): IPropOptions<T> {
 function _applyDefaults<T extends IDictionary<IProp>>(props: T, defaults: Partial<ExtractPropTypes<T>>) {
     return Object.entries(props)
         .map(([key, option]) => {
-            const option_ = key in defaults ? merge({ default: (defaults as any)[key] }, option) : option;
+            const option_ = key in defaults ? merge(option, { default: (defaults as any)[key] }) : option;
             return [key, option_] as [string, IPropOptions];
         })
         .reduce((acc, [key, prop]) => Object.assign(acc, { [key]: prop }), {} as T);
@@ -66,6 +66,10 @@ function _applyDefaults<T extends IDictionary<IProp>>(props: T, defaults: Partia
 
 function _validatorFactory<T extends IPropOptions>(key: string, prop: T): IPropValidator {
     return (value: unknown, props: IDictionary) => {
+        if (!Array.isArray(prop.values)) {
+            return prop.validator?.(value, props) ?? true;
+        }
+
         const allowed = unique(prop.values || []);
         const isValid = allowed.includes(value) && (prop.validator?.(value, props) ?? true);
 

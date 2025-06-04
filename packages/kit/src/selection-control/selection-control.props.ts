@@ -1,5 +1,5 @@
-import type { ExtractPropTypes, PropType } from "vue";
 import { buildProps } from "src/build-props";
+import type { ExtractPropTypes, PropType } from "vue";
 import type { ISelectionControlValue } from "./selection-control.interface";
 
 export type ISelectionControlProps = ExtractPropTypes<ReturnType<typeof buildSelectionControlProps>>;

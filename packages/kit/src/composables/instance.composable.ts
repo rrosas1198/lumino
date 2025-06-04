@@ -1,7 +1,7 @@
 import type { ComponentInternalInstance, ComponentPublicInstance } from "vue";
 import { getCurrentInstance } from "vue";
 
-export interface IComponentInternalInstance<T extends ComponentPublicInstance> extends Omit<ComponentInternalInstance, "proxy"> {
+export interface IComponentInternalInstance<T extends ComponentPublicInstance = ComponentPublicInstance> extends Omit<ComponentInternalInstance, "proxy"> {
     proxy: T | null;
 }
 
