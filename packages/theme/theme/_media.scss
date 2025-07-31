@@ -1,0 +1,87 @@
+@use "../tokens/breakpoint";
+
+@mixin screen-up($name) {
+    $value: breakpoint.get-fallback("#{$name}");
+
+    @if $value == 0 {
+        @content;
+    } @else {
+        @media (width >= #{$value}) {
+            @content;
+        }
+    }
+}
+
+@mixin screen-down($name) {
+    $value: breakpoint.get-fallback("#{$name}");
+
+    @if $value == 0 {
+        @content;
+    } @else {
+        // Subtract 0.02px to avoid overlap
+        @media (width < #{$value}) {
+            @content;
+        }
+    }
+}
+
+@mixin screen-between($lower, $upper) {
+    $min: breakpoint.get-fallback("#{$lower}");
+    $max: breakpoint.get-fallback("#{$upper}");
+
+    @if $min == 0 {
+        @media (width < #{$max}) {
+            @content;
+        }
+    } @else {
+        @media (#{$min} <= width < #{$max}) {
+            @content;
+        }
+    }
+}
+
+@mixin screen-only($name) {
+    $keys: breakpoint.get-keys();
+    $index: list.index($keys, $name);
+
+    @if $index == length($keys) {
+        @include screen-up($name) {
+            @content;
+        }
+    } @else {
+        $next: list.nth($keys, $index + 1);
+        @include screen-between($name, $next) {
+            @content;
+        }
+    }
+}
+
+@mixin supports-touch() {
+    @media (hover: none) and (pointer: coarse) {
+        @content;
+    }
+}
+
+@mixin supports-retina() {
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+        @content;
+    }
+}
+
+@mixin forced-colors-mode() {
+    @media (forced-colors: active) {
+        @content;
+    }
+}
+
+@mixin prefers-motion() {
+    @media (prefers-reduced-motion: no-preference) {
+        @content;
+    }
+}
+
+@mixin prefers-high-contrast() {
+    @media (prefers-contrast: high) {
+        @content;
+    }
+}

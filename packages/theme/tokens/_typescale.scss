@@ -1,0 +1,102 @@
+@use "sass:map";
+@use "../references/typeface";
+
+$_typescale: (
+    // DisplayLarge
+    display-large-font: typeface.get-varname("brand"),
+    display-large-size: 56px,
+    display-large-weight: 600,
+    display-large-line-height: 60px,
+    display-large-letter-spacing: 0,
+    // DisplayMedium
+    display-medium-font: typeface.get-varname("brand"),
+    display-medium-size: 46px,
+    display-medium-weight: 600,
+    display-medium-line-height: 50px,
+    display-medium-letter-spacing: 0,
+    // DisplaySmall
+    display-small-font: typeface.get-varname("brand"),
+    display-small-size: 40px,
+    display-small-weight: 600,
+    display-small-line-height: 44px,
+    display-small-letter-spacing: 0,
+    // HeadlineLarge
+    headline-large-font: typeface.get-varname("plain"),
+    headline-large-size: 32px,
+    headline-large-weight: 500,
+    headline-large-line-height: 40px,
+    headline-large-letter-spacing: 0,
+    // HeadlineMedium
+    headline-medium-font: typeface.get-varname("brand"),
+    headline-medium-size: 28px,
+    headline-medium-weight: 600,
+    headline-medium-line-height: 36px,
+    headline-medium-letter-spacing: 0,
+    // HeadlineSmall
+    headline-small-font: typeface.get-varname("brand"),
+    headline-small-size: 24px,
+    headline-small-weight: 600,
+    headline-small-line-height: 32px,
+    headline-small-letter-spacing: 0,
+    // TitleLarge
+    title-large-font: typeface.get-varname("brand"),
+    title-large-size: 22px,
+    title-large-weight: 600,
+    title-large-line-height: 26px,
+    title-large-letter-spacing: 0,
+    // TitleMedium
+    title-medium-font: typeface.get-varname("brand"),
+    title-medium-size: 18px,
+    title-medium-weight: 600,
+    title-medium-line-height: 24px,
+    title-medium-letter-spacing: 0.0015em,
+    // TitleSmall
+    title-small-font: typeface.get-varname("brand"),
+    title-small-size: 16px,
+    title-small-weight: 600,
+    title-small-line-height: 24px,
+    title-small-letter-spacing: 0.001em,
+    // LabelLarge
+    label-large-font: typeface.get-varname("plain"),
+    label-large-size: 14px,
+    label-large-weight: 600,
+    label-large-line-height: 20px,
+    label-large-letter-spacing: 0.001em,
+    // LabelMedium
+    label-medium-font: typeface.get-varname("plain"),
+    label-medium-size: 12px,
+    label-medium-weight: 600,
+    label-medium-line-height: 16px,
+    label-medium-letter-spacing: 0.005em,
+    // LabelSmall
+    label-small-font: typeface.get-varname("plain"),
+    label-small-size: 11px,
+    label-small-weight: 600,
+    label-small-line-height: 16px,
+    label-small-letter-spacing: 0.005em,
+    // BodyLarge
+    body-large-font: typeface.get-varname("plain"),
+    body-large-size: 16px,
+    body-large-weight: 500,
+    body-large-line-height: 24px,
+    body-large-letter-spacing: 0.0025em,
+    // BodyMedium
+    body-medium-font: typeface.get-varname("plain"),
+    body-medium-size: 14px,
+    body-medium-weight: 500,
+    body-medium-line-height: 20px,
+    body-medium-letter-spacing: 0.0025em,
+    // BodySmall
+    body-small-font: typeface.get-varname("plain"),
+    body-small-size: 12px,
+    body-small-weight: 500,
+    body-small-line-height: 16px,
+    body-small-letter-spacing: 0.004em
+);
+
+@function get-fallback($property) {
+    @if not map.has-key($_typescale, $property) {
+        @error "typescale: invalid property #{$property}";
+    }
+    @return map.get($_typescale, $property);
+}

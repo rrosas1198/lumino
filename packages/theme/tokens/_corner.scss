@@ -1,0 +1,34 @@
+@use "sass:map";
+
+$_corner: (
+    // Corner
+    none: 0,
+    full: 100px,
+    // CornerExtraSmall
+    extra-small: 4px,
+    extra-small-top: 4px 4px 0 0,
+    extra-small-end: 0 4px 4px 0,
+    // CornerSmall
+    small: 8px,
+    small-top: 8px 8px 0 0,
+    small-end: 0 8px 8px 0,
+    // CornerMedium
+    medium: 16px,
+    medium-top: 16px 16px 0 0,
+    medium-end: 0 16px 16px 0,
+    // CornerLarge
+    large: 24px,
+    large-top: 24px 24px 0 0,
+    large-end: 0 24px 24px 0,
+    // CornerExtraLarge
+    extra-large: 32px,
+    extra-large-top: 32px 32px 0 0,
+    extra-large-end: 0 32px 32px 0
+);
+
+@function get-fallback($property) {
+    @if not map.has-key($_corner, $property) {
+        @error "corner: invalid property #{$property}";
+    }
+    @return map.get($_corner, $property);
+}

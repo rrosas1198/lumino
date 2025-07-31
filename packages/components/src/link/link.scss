@@ -1,0 +1,46 @@
+@use "@lumino/theme/tokens/color";
+@use "@lumino/theme/theme/media";
+@use "@lumino/theme/theme/transition";
+@use "@lumino/theme/theme/typography";
+
+.link {
+    display: inline-flex;
+    flex: none;
+    column-gap: 4px;
+    align-items: center;
+    color: var(--link-color, #{color.get-varname("primary")});
+    text-decoration: underline;
+    @include typography.typescale("label-large");
+
+    @include media.prefers-motion() {
+        transition: transition.linear("color");
+    }
+
+    &:focus {
+        outline: none;
+    }
+
+    .sprite {
+        flex: none;
+    }
+}
+
+.link__prepend,
+.link__append {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    @include media.prefers-motion() {
+        transition: transition.linear("color");
+    }
+}
+
+.link__prepend {
+    color: var(--link-prepend-color, currentColor);
+}
+
+
+.link__append {
+    color: var(--link-append-color, currentColor);
+}

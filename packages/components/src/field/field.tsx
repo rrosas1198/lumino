@@ -14,13 +14,9 @@ export const VField = defineComponent({
             const hasPrepend = typeof slots.prepend === "function";
             const hasAppend = typeof slots.append === "function";
 
-            const _renderPrepend = () => (
-                <div class="field__prepend">{slots.prepend?.({})}</div>
-            );
+            const _renderPrepend = () => <div class="field__prepend">{slots.prepend?.({})}</div>;
 
-            const _renderAppend = () => (
-                <div class="field__append">{slots.append?.({})}</div>
-            );
+            const _renderAppend = () => <div class="field__append">{slots.append?.({})}</div>;
 
             const _renderLabel = () => (
                 <label id={`${props.id}_label`} for={props.name || props.id} class="field__label">
@@ -32,7 +28,7 @@ export const VField = defineComponent({
                 <div
                     id={props.id}
                     class={{
-                        "field": true,
+                        field: true,
                         "field--focused": focused.value,
                         "field--invalid": invalid.value ?? false,
                         "field--disabled": disabled.value ?? false

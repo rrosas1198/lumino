@@ -1,0 +1,43 @@
+@use "sass:map";
+
+$_spacing: (
+    // Padding-0
+    0: 0px,
+    // Padding-1
+    1: 4px,
+    // Padding-2
+    2: 8px,
+    // Padding-3
+    3: 12px,
+    // Padding-4
+    4: 16px,
+    // Padding-5
+    5: 20px,
+    // Padding-6
+    6: 24px,
+    // Padding-7
+    7: 32px,
+    // Padding-8
+    8: 40px,
+    // Padding-9
+    9: 48px,
+    // Padding-10
+    10: 56px,
+    // Padding-11
+    11: 64px,
+    // Padding-12
+    12: 72px,
+    // Padding-13
+    13: 80px,
+    // Padding-14
+    14: 96px,
+    // Padding-15
+    15: 104px
+);
+
+@function get-fallback($property) {
+    @if not map.has-key($_spacing, $property) {
+        @error "spacing: invalid property #{$property}";
+    }
+    @return map.get($_spacing, $property);
+}

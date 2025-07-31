@@ -1,0 +1,36 @@
+@use "sass:map";
+@use "../tokens/container";
+@use "../theme/media";
+
+.container,
+.container-fluid {
+    inline-size: 100%;
+    max-inline-size: var(--container-max-width);
+    margin-inline: auto;
+
+    @each $breakpoint in container.get-keys() {
+        $values: container.get-fallback($breakpoint);
+        $max-width: map.get($values, "max-width");
+
+        @include media.screen-up($breakpoint) {
+            @if $max-width {
+                --container-max-width: #{$max-width};
+            }
+        }
+    }
+}
+
+.container {
+    padding-inline: var(--container-spacing);
+
+    @each $breakpoint in container.get-keys() {
+        $values: container.get-fallback($breakpoint);
+        $spacing: map.get($values, "spacing");
+
+        @include media.screen-up($breakpoint) {
+            @if $spacing {
+                --container-spacing: #{$spacing};
+            }
+        }
+    }
+}

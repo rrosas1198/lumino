@@ -1,0 +1,16 @@
+@use "../theme/media";
+@use "../theme/transition";
+@use "../theme/typography";
+
+.message {
+    min-height: 16px;
+    flex: none;
+    padding-left: 16px;
+    padding-right: 16px;
+    @include typography.typescale("label-small");
+    @include typography.line-clamp(2);
+
+    @include media.prefers-motion() {
+        transition: transition.linear(color);
+    }
+}

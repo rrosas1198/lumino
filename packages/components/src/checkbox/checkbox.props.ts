@@ -1,5 +1,11 @@
+import {
+    buildChoiceProps,
+    buildFormAssociatedProps,
+    buildListenerProp,
+    buildProps,
+    omit
+} from "@lumino/kit";
 import type { IMaybePromise } from "@lumino/kit";
-import { buildFormAssociatedProps, buildListenerProp, buildProps, buildSelectionControlProps, omit } from "@lumino/kit";
 
 export const buildCheckboxProps = buildProps({
     label: {
@@ -18,5 +24,5 @@ export const buildCheckboxProps = buildProps({
     onChange: buildListenerProp<(value: boolean) => IMaybePromise<void>>(),
     "onUpdate:modelValue": buildListenerProp<(value: boolean) => IMaybePromise<void>>(),
     ...buildFormAssociatedProps(),
-    ...omit(buildSelectionControlProps({ multiple: false }), ["multiple"])
+    ...omit(buildChoiceProps({ multiple: false }), ["multiple"])
 });

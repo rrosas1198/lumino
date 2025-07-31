@@ -1,0 +1,48 @@
+@use "../theme/media";
+@use "../tokens/color";
+@use "../tokens/corner";
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+* {
+    &::selection {
+        color: color.get-varname("on-secondary");
+        background-color: color.get-varname("secondary");
+    }
+
+    &::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: color.get-varname("inverse-surface");
+        border-radius: corner.get-fallback("full");
+    }
+}
+
+html,
+body {
+    block-size: 100%;
+    min-block-size: 100%;
+}
+
+html {
+    overflow-y: scroll;
+    text-size-adjust: 100%;
+
+    @include media.prefers-motion() {
+        scroll-behavior: smooth;
+    }
+}
+
+body {
+    margin: 0;
+}
+
+p {
+    margin-block-start: 0;
+}

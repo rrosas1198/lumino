@@ -1,0 +1,74 @@
+@use "@lumino/theme/tokens/color";
+
+.text-field {
+    --text-field-space-with-slots: 0;
+    --text-field-space-without-slots: 16px;
+    display: flex;
+    row-gap: 2px;
+    flex-direction: column;
+}
+
+.text-field .field {
+    &:not(.field--disabled) {
+        &.field--invalid~.message {
+            --text-field-message-color: #{color.get-varname("error")};
+        }
+    }
+
+    &:not(:hover):not(:focus-within):not(.field--disabled) {
+        &:not(.field--invalid)~.message {
+            --text-field-message-color: #{color.get-varname("on-surface")};
+        }
+    }
+
+    &:hover:not(:focus-within):not(.field--disabled) {
+        &:not(.field--invalid)~.message {
+            --text-field-message-color: #{color.get-varname("on-surface-variant")};
+        }
+    }
+
+    &:not(:focus-within):not(.field--disabled) {
+        --input-color: #{color.get-varname("on-surface")};
+    }
+
+    &:focus-within:not(.field--disabled),
+    &.field--focused:not(.field--disabled) {
+        --input-color: #{color.get-varname("on-surface-variant")};
+
+        &:not(.field--invalid)~.message {
+            --text-field-message-color: #{color.get-varname("primary")};
+        }
+    }
+
+    &.field--disabled {
+        --input-color: #{color.get-varname("disabled")};
+
+        ~.message {
+            --text-field-message-color: #{color.get-varname("disabled")};
+        }
+    }
+}
+
+.text-field .field__content {
+    background-color: color.get-varname("surface");
+
+    &:not(:has(.field__prepend)) .text-field__native.input {
+        padding-inline-start: var(--text-field-space-without-slots);
+    }
+
+    &:not(:has(.field__append)) .text-field__native.input {
+        padding-inline-end: var(--text-field-space-without-slots);
+    }
+
+    &:has(.field__prepend) .text-field__native.input {
+        padding-inline-start: var(--text-field-space-with-slots);
+    }
+
+    &:has(.field__append) .text-field__native.input {
+        padding-inline-end: var(--text-field-space-with-slots);
+    }
+}
+
+.text-field .message {
+    color: var(--text-field-message-color);
+}

@@ -1,0 +1,157 @@
+@use "@lumino/theme/tokens/color";
+@use "@lumino/theme/tokens/easing";
+@use "@lumino/theme/tokens/opacity";
+@use "@lumino/theme/theme/media";
+@use "@lumino/theme/theme/transition";
+
+.radio {
+    --radio-size: 48px;
+    position: relative;
+    display: flex;
+    contain: layout;
+    align-items: center;
+    user-select: none;
+}
+
+.radio:not(.radio--disabled) {
+    --radio-label-color: #{color.get-varname("primary")};
+    cursor: pointer;
+}
+
+.radio:not(.radio--active):not(.radio--disabled) {
+    --radio-mark-color: transparent;
+    --radio-mark-background-color: transparent;
+    --radio-border-color: #{color.get-varname("outline")};
+}
+
+.radio--active:not(.radio--disabled) {
+    --radio-mark-color: #{color.get-varname("on-primary")};
+    --radio-mark-background-color: #{color.get-varname("primary")};
+    --radio-border-color: #{color.get-varname("primary")};
+}
+
+.radio--disabled {
+    --radio-label-color: #{color.get-varname("disabled")};
+    --radio-border-color: #{color.get-varname("disabled")};
+    cursor: not-allowed;
+}
+
+.radio--disabled.radio--active {
+    --radio-mark-color: #{color.get-varname("neutral")};
+    --radio-mark-background-color: #{color.get-varname("disabled")};
+}
+
+.radio--disabled:not(.radio--active) {
+    --radio-mark-color: transparent;
+    --radio-mark-background-color: transparent;
+}
+
+.radio:hover:not(.radio--disabled):not(.radio--focused) .radio__control::before {
+    --radio-layer-opacity: #{opacity.get-fallback("hover")};
+}
+
+.radio--focused:hover .radio__control::before {
+    --radio-layer-opacity: #{opacity.get-fallback("focus")};
+}
+
+.radio--focused:not(:hover) .radio__control::before {
+    --radio-layer-opacity:#{opacity.get-fallback("pressed")};
+}
+
+.radio__control {
+    position: relative;
+    width: var(--radio-size);
+    height: var(--radio-size);
+    display: inline-flex;
+    flex: none;
+    color: color.get-varname("primary");
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+
+    &::before {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        content: "";
+        opacity: var(--radio-layer-opacity, 0);
+        border-radius: 100%;
+        background-color: var(--radio-layer-color, currentColor);
+        pointer-events: none;
+
+        @include media.prefers-motion() {
+            transition: transition.linear("opacity");
+        }
+    }
+}
+
+.radio__native {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    margin: 0;
+    opacity: 0;
+    cursor: inherit;
+}
+
+.radio__dot {
+    --icon-width: 16px;
+    --icon-height: 16px;
+    width: 20px;
+    height: 20px;
+    flex: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 50%;
+    border-color: var(--radio-border-color);
+
+    @include media.prefers-motion() {
+        transition: transition.linear("border-color");
+    }
+
+    &::before {
+        content: "";
+        width: 0px;
+        height: 0px;
+        border-radius: 50%;
+        transform: scale(0);
+        background-color: var(--radio-mark-background-color);
+
+        @include media.prefers-motion() {
+            transition: transition.linear("background-color");
+        }
+    }
+}
+
+.radio--active .radio__dot::before {
+    width: calc(100% - 4px);
+    height: calc(100% - 4px);
+
+    @include media.prefers-motion() {
+        animation: inner-circle-grow 300ms easing.get-fallback("emphasized-decelerate") forwards;
+    }
+}
+
+.radio--label {
+    height: var(--radio-size);
+    flex: 1;
+    color: var(--radio-label-color);
+    cursor: inherit;
+}
+
+@keyframes inner-circle-grow {
+    from {
+        transform: scale(0);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}

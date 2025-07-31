@@ -1,15 +1,15 @@
 import { useRender } from "@lumino/kit";
-import { VField } from "src/field";
 import { defineComponent, onMounted, ref, useModel } from "vue";
+import { VField } from "../field";
 import { buildTextFieldProps } from "./text-field.props";
 
 export const VTextField = defineComponent({
     name: "VTextField",
     props: buildTextFieldProps(),
     emits: {
-        "input": (_value: string, _event: Event) => void 0
+        input: (_value: string, _event: Event) => true
     },
-    setup(props, { emit, slots }) {
+    setup(props, { emit }) {
         const proxy = ref<HTMLElement>();
         const model = useModel(props, "modelValue");
 
@@ -47,16 +47,14 @@ export const VTextField = defineComponent({
                 />
             );
 
-            const _renderMessage = () => (
-                <div class="message">{props.errorMessage}</div>
-            );
+            const _renderMessage = () => <div class="message">{props.errorMessage}</div>;
 
             return (
                 <div id={props.id} class="text-field">
                     <VField
                         id={`${props.id}_field`}
                         label={props.label}
-                        focused={!!model.value}
+                        focused={!!model.value || !!props.placeholder}
                         disabled={props.disabled}
                         invalid={props.invalid}
                     >
