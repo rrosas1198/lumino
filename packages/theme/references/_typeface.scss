@@ -1,0 +1,37 @@
+@use "sass:map";
+@use "sass:meta";
+@use "sass:string";
+
+$_namespace: "sys-typeface";
+
+$_family-brand: "Roboto Mono", sans-serif;
+$_family-plain: "Roboto", sans-serif;
+$_family-mono: "Menlo", "Monaco", "Consolas", "Courier New", monospace;
+
+$_typeface: (
+    brand: #{meta.inspect($_family-brand)},
+    plain: #{meta.inspect($_family-plain)},
+    mono: #{meta.inspect($_family-mono)},
+);
+
+@function get-keys() {
+    @return map.keys($_typeface);
+}
+
+@function get-alias($property) {
+    @if not map.has-key($_typeface, $property) {
+        @error "typeface: invalid property #{$property}";
+    }
+    @return string.unquote("--#{$_namespace}-#{$property}");
+}
+
+@function get-fallback($property) {
+    @if not map.has-key($_typeface, $property) {
+        @error "typeface: invalid property #{$property}";
+    }
+    @return string.unquote(map.get($_typeface, $property));
+}
+
+@function get-varname($property) {
+    @return var(#{get-alias($property)});
+}

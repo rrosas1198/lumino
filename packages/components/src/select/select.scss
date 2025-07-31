@@ -1,0 +1,87 @@
+@use "@lumino/theme/theme/transition";
+@use "@lumino/theme/tokens/color";
+
+.select {
+    --select-space-with-slots: 0;
+    --select-space-without-slots: 16px;
+    display: flex;
+    row-gap: 2px;
+    flex-direction: column;
+}
+
+.select--opened {
+    .field__append .icon {
+        transform: rotate(180deg);
+    }
+}
+
+.select .field {
+    &:not(.field--disabled) {
+        cursor: pointer;
+
+        &.field--invalid~.message {
+            --select-message-color: #{color.get-varname("error")};
+        }
+    }
+
+    &:not(:hover):not(:focus-within):not(.field--disabled) {
+        &:not(.field--invalid)~.message {
+            --select-message-color: #{color.get-varname("on-surface")};
+        }
+    }
+
+    &:hover:not(:focus-within):not(.field--disabled) {
+        &:not(.field--invalid)~.message {
+            --select-message-color: #{color.get-varname("on-surface-variant")};
+        }
+    }
+
+    &:not(:focus-within):not(.field--disabled) {
+        --input-color: #{color.get-varname("on-surface")};
+    }
+
+    &:focus-within:not(.field--disabled),
+    &.field--focused:not(.field--disabled) {
+        --input-color: #{color.get-varname("on-surface-variant")};
+
+        &:not(.field--invalid)~.message {
+            --select-message-color: #{color.get-varname("primary")};
+        }
+    }
+
+    &.field--disabled {
+        --input-color: #{color.get-varname("disabled")};
+
+        ~.message {
+            --select-message-color: #{color.get-varname("disabled")};
+        }
+    }
+}
+
+.select .field__content {
+    background-color: color.get-varname("surface");
+
+    &:not(:has(.field__prepend)) .select__native.input {
+        padding-inline-start: var(--select-space-without-slots);
+    }
+
+    &:not(:has(.field__append)) .select__native.input {
+        padding-inline-end: var(--select-space-without-slots);
+    }
+
+    &:has(.field__prepend) .select__native.input {
+        padding-inline-start: var(--select-space-with-slots);
+    }
+
+    &:has(.field__append) .select__native.input {
+        padding-inline-end: var(--select-space-with-slots);
+    }
+}
+
+.select .field__append .icon {
+    transition: transition.emphasized-decelerate("transform");
+}
+
+.select .message {
+    color: var(--select-message-color);
+}

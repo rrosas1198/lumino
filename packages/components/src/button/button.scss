@@ -1,0 +1,238 @@
+@use "@lumino/theme/theme/media";
+@use "@lumino/theme/theme/transition";
+@use "@lumino/theme/tokens/color";
+@use "@lumino/theme/tokens/corner";
+@use "@lumino/theme/tokens/opacity";
+
+.button {
+    --button-size: 48px;
+    --button-space-with-slots: 18px;
+    --button-space-without-slots: 28px;
+    position: relative;
+    inline-size: fit-content;
+    max-inline-size: 100%;
+    display: inline-flex;
+    column-gap: 8px;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+    border: none;
+    flex: none;
+    text-decoration: none;
+    background-color: var(--button-background-color);
+    appearance: none;
+    user-select: none;
+
+    &::before,
+    &::after {
+        position: absolute;
+        inline-size: 100%;
+        block-size: 100%;
+        inset-block-start: 0;
+        inset-inline-start: 0;
+        content: "";
+        border-radius: inherit;
+        pointer-events: none;
+    }
+
+    &::before {
+        background-color: var(--button-layer-color, transparent);
+        opacity: var(--button-layer-opacity, 0);
+        z-index: 1;
+
+        @include media.prefers-motion() {
+            transition: transition.linear("background-color"), transition.linear("opacity");
+        }
+    }
+
+    &::after {
+        border-width: 1px;
+        border-style: solid;
+        border-color: var(--button-outline-color);
+
+        @include media.prefers-motion() {
+            transition: transition.linear("border-color");
+        }
+    }
+
+    &:focus {
+        --button-layer-opacity: #{opacity.get-fallback("focus")};
+    }
+
+    &:active:not(:focus) {
+        --button-layer-opacity: #{opacity.get-fallback("pressed")};
+    }
+
+    &:hover:not(:active):not(:focus) {
+        --button-layer-opacity: #{opacity.get-fallback("hover")};
+    }
+
+    &:not(.button--icon):not(:has(.button__prepend)) {
+        padding-inline-start: var(--button-space-without-slots);
+    }
+
+    &:not(.button--icon):not(:has(.button__append)) {
+        padding-inline-end: var(--button-space-without-slots);
+    }
+
+    &:not(.button--icon):has(.button__prepend) {
+        padding-inline-start: var(--button-space-with-slots);
+    }
+
+    &:not(.button--icon):has(.button__append) {
+        padding-inline-end: var(--button-space-with-slots);
+    }
+}
+
+.button:not(.button--disabled) {
+    cursor: pointer;
+}
+
+.button.button--disabled {
+    cursor: not-allowed;
+}
+
+.button.button--loading {
+    pointer-events: none;
+    cursor: progress;
+}
+
+.button:not(.button--icon) {
+    min-block-size: var(--button-size);
+    border-radius: corner.get-fallback("full");
+}
+
+.button--icon {
+    inline-size: var(--button-size);
+    block-size: var(--button-size);
+    padding-inline: 0;
+}
+
+.button--icon:not(.button--square) {
+    border-radius: corner.get-fallback("full");
+}
+
+.button--icon.button--square {
+    border-radius: corner.get-fallback("small");
+}
+
+.button__prepend,
+.button__append {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    @include media.prefers-motion() {
+        transition: transition.linear("color");
+    }
+}
+
+.button__prepend {
+    color: var(--button-prepend-color);
+}
+
+.button__label {
+    color: var(--button-label-color);
+}
+
+.button__append {
+    color: var(--button-append-color);
+}
+
+.button .ripple__container {
+    z-index: 1;
+}
+
+.button .spinner {
+    --spinner-size: 16px;
+    --spinner-border: 0.2em;
+}
+
+.button--standard:not(.button--disabled) {
+    --button-background-color: #{color.get-varname("surface")};
+
+    &:not(.button--icon) {
+        --button-label-color: #{color.get-varname("on-surface")};
+    }
+}
+
+.button--standard.button--disabled {
+    --button-append-color: #{color.get-varname("disabled")};
+    --button-prepend-color: #{color.get-varname("disabled")};
+    --button-label-color: #{color.get-varname("disabled")};
+    --button-outline-color: transparent;
+    --button-background-color: #{color.get-varname("surface")};
+}
+
+.button--standard.button--primary:not(.button--disabled) {
+    --button-layer-color: #{color.get-varname("primary")};
+    --button-append-color: #{color.get-varname("primary")};
+    --button-prepend-color: #{color.get-varname("primary")};
+    --button-label-color: #{color.get-varname("primary")};
+    --button-outline-color: transparent;
+}
+
+// .button--filled:not(.button--disabled) {}
+
+.button--filled.button--disabled {
+    --button-append-color: #{color.get-varname("disabled")};
+    --button-prepend-color: #{color.get-varname("disabled")};
+    --button-label-color: #{color.get-varname("disabled")};
+    --button-outline-color: #{color.get-varname("surface-disabled")};
+    --button-background-color: #{color.get-varname("surface-disabled")};
+}
+
+.button--filled.button--primary:not(.button--disabled) {
+    --button-layer-color: #{color.get-varname("on-primary")};
+    --button-append-color: #{color.get-varname("on-primary")};
+    --button-prepend-color: #{color.get-varname("on-primary")};
+    --button-label-color: #{color.get-varname("on-primary")};
+    --button-outline-color: #{color.get-varname("primary")};
+    --button-background-color: #{color.get-varname("primary")};
+}
+
+.button--filled.button--secondary:not(.button--disabled) {
+    --button-layer-color: #{color.get-varname("on-secondary")};
+    --button-append-color: #{color.get-varname("on-secondary")};
+    --button-prepend-color: #{color.get-varname("on-secondary")};
+    --button-label-color: #{color.get-varname("on-secondary")};
+    --button-outline-color: #{color.get-varname("secondary")};
+    --button-background-color: #{color.get-varname("secondary")};
+}
+
+.button--outlined:not(.button--disabled) {
+    --button-background-color: #{color.get-varname("surface")};
+
+    &:not(:active):not(:focus) {
+        --button-outline-color: #{color.get-varname("outline")};
+    }
+
+    &:not(:hover):not(:active):not(:focus) {
+        --button-label-color: #{color.get-varname("on-surface")};
+    }
+}
+
+.button--outlined.button--disabled {
+    --button-append-color: #{color.get-varname("disabled")};
+    --button-prepend-color: #{color.get-varname("disabled")};
+    --button-label-color: #{color.get-varname("disabled")};
+    --button-outline-color: #{color.get-varname("disabled")};
+    --button-background-color: #{color.get-varname("surface")};
+}
+
+.button--outlined.button--primary:not(.button--disabled) {
+    --button-layer-color: #{color.get-varname("primary")};
+    --button-append-color: #{color.get-varname("primary")};
+    --button-prepend-color: #{color.get-varname("primary")};
+
+    &:hover,
+    &:active,
+    &:focus {
+        --button-label-color: #{color.get-varname("primary")};
+    }
+
+    &:active,
+    &:focus {
+        --button-outline-color: #{color.get-varname("primary")};
+    }
+}

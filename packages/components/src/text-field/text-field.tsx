@@ -1,16 +1,16 @@
 import { useRender } from "@lumino/kit";
-import { VField } from "src/field";
 import { defineComponent, onMounted, ref, useModel } from "vue";
+import { VField } from "../field";
 import { buildTextFieldProps } from "./text-field.props";
 
 export const VTextField = defineComponent({
     name: "VTextField",
     props: buildTextFieldProps(),
     emits: {
-        "input": (_value: string, _event: Event) => void 0
+        input: (_value: string, _event: Event) => true
     },
     setup(props, { emit, slots }) {
-        const proxy = ref<HTMLElement>();
+        const proxy = ref<HTMLInputElement>();
         const model = useModel(props, "modelValue");
 
         const onInput = (event: Event) => {
@@ -47,32 +47,21 @@ export const VTextField = defineComponent({
                 />
             );
 
-            const _renderMessage = () => (
-                <div class="message">{props.errorMessage}</div>
-            );
+            const _renderMessage = () => <div class="message">{props.errorMessage}</div>;
 
             return (
                 <div id={props.id} class="text-field">
                     <VField
                         id={`${props.id}_field`}
                         label={props.label}
-                        focused={!!model.value}
-                        disabled={props.disabled}
+                        focused={!!model.value || !!props.placeholder}
                         invalid={props.invalid}
-                    >
-                        {/* {{
+                        disabled={props.disabled}
+                        v-slots={{
                             ...slots,
-                            default: () => {
-                                <Fragment>
-                                    {_renderInput()}
-                                    {!props.hideMessage && _renderMessage()}
-                                </Fragment>
-                            }
-                        }} */}
-
-                        {_renderInput()}
-                    </VField>
-
+                            default: () => _renderInput()
+                        }}
+                    />
                     {!props.hideMessage && _renderMessage()}
                 </div>
             );

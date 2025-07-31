@@ -1,13 +1,13 @@
 import { useRender } from "@lumino/kit";
-import { VField } from "src/field";
 import { defineComponent, onMounted, ref, useModel } from "vue";
+import { VField } from "../field";
 import { buildTextareaProps } from "./textarea.props";
 
 export const VTextarea = defineComponent({
     name: "VTextarea",
     props: buildTextareaProps(),
     emits: {
-        "input": (_value: string, _event: Event) => void 0
+        input: (_value: string, _event: Event) => true
     },
     setup(props, { emit, slots }) {
         const proxy = ref<HTMLElement>();
@@ -47,9 +47,7 @@ export const VTextarea = defineComponent({
                 />
             );
 
-            const _renderMessage = () => (
-                <div class="message">{props.errorMessage}</div>
-            );
+            const _renderMessage = () => <div class="message">{props.errorMessage}</div>;
 
             return (
                 <div id={props.id} class="textarea">
@@ -59,20 +57,11 @@ export const VTextarea = defineComponent({
                         focused={!!model.value}
                         disabled={props.disabled}
                         invalid={props.invalid}
-                    >
-                        {/* {{
+                        v-slots={{
                             ...slots,
-                            default: () => {
-                                <Fragment>
-                                    {_renderTextarea()}
-                                    {!props.hideMessage && _renderMessage()}
-                                </Fragment>
-                            }
-                        }} */}
-
-                        {_renderTextarea()}
-                    </VField>
-
+                            default: () => _renderTextarea()
+                        }}
+                    />
                     {!props.hideMessage && _renderMessage()}
                 </div>
             );

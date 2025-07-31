@@ -1,6 +1,6 @@
-import type { ISelectionControlValue } from "@lumino/kit";
-import { useRender, useSelectionControl } from "@lumino/kit";
+import { type IChoiceValue, useChoice, useRender } from "@lumino/kit";
 import { computed, defineComponent, ref, useModel } from "vue";
+import { CheckboxCheckMark } from "./checkbox.icons";
 import { buildCheckboxProps } from "./checkbox.props";
 
 export const VCheckbox = defineComponent({
@@ -10,14 +10,13 @@ export const VCheckbox = defineComponent({
         event: "update:modelValue"
     },
     emits: {
-        click: (_event: MouseEvent) => void 0,
-        change: (_value: ISelectionControlValue, _event: Event) => void 0,
-        "update:modelValue": (_value: boolean, _event: Event) => void 0,
-        "update:indeterminate": (_value: boolean, _event: Event) => void 0
+        click: (_event: MouseEvent) => true,
+        change: (_value: IChoiceValue, _event: Event) => true,
+        "update:indeterminate": (_value: boolean, _event: Event) => true
     },
     props: buildCheckboxProps(),
     setup(props, { emit, slots }) {
-        const { model, value } = useSelectionControl(props as any);
+        const { model, value } = useChoice(props as any);
 
         const proxy = ref<HTMLInputElement>();
         const indeterminate = useModel(props, "indeterminate");
@@ -74,7 +73,7 @@ export const VCheckbox = defineComponent({
                         checkbox: true,
                         "checkbox--checked": model.value,
                         "checkbox--focused": focused.value,
-                        "checkbox--disabled": props.disabled,
+                        "checkbox--disabled": props.disabled
                     }}
                     onKeydown={onKeyDown}
                 >
@@ -101,9 +100,7 @@ export const VCheckbox = defineComponent({
                         />
 
                         <div class="checkbox__background">
-                            <div class="checkbox__check-mark">
-                                {/* {CheckboxCheckMark()} */}
-                            </div>
+                            <div class="checkbox__check-mark">{CheckboxCheckMark()}</div>
                             <div class="checkbox__mixed-mark" />
                         </div>
                     </div>

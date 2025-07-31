@@ -1,0 +1,16 @@
+@use "sass:map";
+
+$_opacity: (
+    hover: 0.1,
+    focus: 0.15,
+    pressed: 0.15,
+    selected: 0.1,
+    dragged: 0.15,
+);
+
+@function get-fallback($property) {
+    @if not map.has-key($_opacity, $property) {
+        @error "opacity: invalid property #{$property}";
+    }
+    @return map.get($_opacity, $property);
+}

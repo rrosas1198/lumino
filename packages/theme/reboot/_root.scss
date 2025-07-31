@@ -1,0 +1,19 @@
+@use "../references/typeface";
+@use "../tokens/color";
+@use "../theme/media";
+
+:root {
+    @each $property in typeface.get-keys() {
+        #{typeface.get-alias($property)}: typeface.get-fallback($property);
+    }
+
+    @each $property in color.get-keys() {
+        #{color.get-alias($property)}: color.get-fallback($property, "light");
+    }
+
+    @media (prefers-color-scheme: dark) {
+        @each $property in color.get-keys() {
+            #{color.get-alias($property)}: color.get-fallback($property, "dark");
+        }
+    }
+}

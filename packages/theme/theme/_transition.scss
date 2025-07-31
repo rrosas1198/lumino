@@ -1,0 +1,38 @@
+@use "sass:string";
+@use "../tokens/duration";
+@use "../tokens/easing";
+
+@function linear($name, $duration: "short-3") {
+    @return _build-transition($name, $duration, "linear");
+}
+
+@function standard($name, $duration: "medium-2") {
+    @return _build-transition($name, $duration, "standard");
+}
+
+@function standard-accelerate($name, $duration: "medium-1") {
+    @return _build-transition($name, $duration, "standard-accelerate");
+}
+
+@function standard-decelerate($name, $duration: "medium-3") {
+    @return _build-transition($name, $duration, "standard-decelerate");
+}
+
+@function emphasized($name, $duration: "medium-4") {
+    @return _build-transition($name, $duration, "emphasized");
+}
+
+@function emphasized-accelerate($name, $duration: "medium-2") {
+    @return _build-transition($name, $duration, "emphasized-accelerate");
+}
+
+@function emphasized-decelerate($name, $duration: "long-1") {
+    @return _build-transition($name, $duration, "emphasized-decelerate");
+}
+
+@function _build-transition($name, $duration, $easing) {
+    $property: string.unquote($name);
+    $time: duration.get-fallback($duration);
+    $curve: easing.get-fallback($easing);
+    @return #{$property} #{$time} #{$curve};
+}

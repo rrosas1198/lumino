@@ -1,14 +1,14 @@
 import type { IMaybePromise } from "@lumino/kit";
 import { buildFormAssociatedWithValidationProps, buildInputProps, buildListenerProp, buildProps, omit } from "@lumino/kit";
-import { buildFieldProps } from "src/field";
 import type { ExtractPropTypes } from "vue";
+import { buildFieldProps } from "../field";
 
 export type ITextareaProps = ExtractPropTypes<ReturnType<typeof buildTextareaProps>>;
 
 export const buildTextareaProps = buildProps({
     modelValue: {
         type: String,
-        default: undefined
+        default: ""
     },
     rows: {
         type: [Number, String],

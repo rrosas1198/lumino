@@ -1,0 +1,60 @@
+@use "sass:map";
+
+$_sizing: (
+    // ObjectSize-1
+    1: 8px,
+    // ObjectSize-2
+    2: 16px,
+    // ObjectSize-3
+    3: 24px,
+    // ObjectSize-4
+    4: 32px,
+    // ObjectSize-5
+    5: 40px,
+    // ObjectSize-6
+    6: 48px,
+    // ObjectSize-7
+    7: 56px,
+    // ObjectSize-8
+    8: 64px,
+    // ObjectSize-9
+    9: 72px,
+    // ObjectSize-10
+    10: 80px,
+    // ObjectSize-11
+    11: 96px,
+    // ObjectSize-12
+    12: 104px,
+    // ObjectSize-13
+    13: 128px,
+    // ObjectSize-14
+    14: 144px,
+    // ObjectSize-15
+    15: 160px,
+    // ObjectSize-16
+    16: 180px,
+    // ObjectSize-17
+    17: 208px,
+    // ObjectSize-18
+    18: 240px,
+    // ObjectSize-19
+    19: 320px,
+    // ObjectSize-20
+    20: 360px,
+    // ObjectSize-21
+    21: 400px,
+
+    symbol-extra-small: 24px,
+    symbol-small: 32px,
+    symbol-standard: 48px,
+    symbol-medium: 64px,
+    symbol-large: 96px,
+    symbol-extra-large: 144px
+);
+
+@function get-fallback($property) {
+    @if not map.has-key($_sizing, $property) {
+        @error "sizing: invalid property #{$property}";
+    }
+    @return map.get($_sizing, $property);
+}

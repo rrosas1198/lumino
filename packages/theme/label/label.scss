@@ -1,0 +1,14 @@
+@use "../theme/transition";
+@use "../theme/typography";
+@use "../theme/media";
+
+.label {
+    display: inline-flex;
+    align-items: center;
+    @include typography.typescale("label-large");
+    @include typography.truncate();
+
+    @include media.prefers-motion() {
+        transition: transition.linear("color");
+    }
+}

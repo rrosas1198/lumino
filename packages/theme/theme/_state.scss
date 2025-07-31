@@ -1,0 +1,146 @@
+@use "../tokens/color";
+@use "../tokens/opacity";
+@use "./transition";
+
+@mixin interactive() {
+    @include with-enabled() {
+        cursor: pointer;
+    }
+    @include with-disabled();
+    @include with-layer();
+    @include with-hover();
+    @include with-focus();
+    @include with-pressed();
+}
+
+// @mixin selectable() {
+//     cursor: pointer;
+//     @include with-layer();
+//     @include _hover();
+//     @include _focus();
+//     @include _pressed();
+//     @include _selected();
+//     @include _disabled();
+// }
+
+// @mixin form-control() {
+//     cursor: text;
+//     @include with-layer();
+//     @include _hover();
+//     @include _focus();
+//     @include _disabled();
+// }
+
+// @mixin hoverable() {
+//     @include with-layer();
+//     @include _hover();
+//     @include _disabled();
+// }
+
+// @mixin draggable() {
+//     cursor: grab;
+//     @include with-layer();
+//     @include _hover();
+//     @include _focus();
+//     @include _pressed();
+//     @include _dragged();
+//     @include _disabled();
+
+//     &.is-dragged {
+//         cursor: grabbing;
+//     }
+// }
+
+@mixin with-layer() {
+    // --state-color: var(--color-#{$color});
+    // --state-opacity: 0;
+
+    // @if $border {
+    //     --state-outline: var(--color-#{$border});
+    // } @else {
+    //     --state-outline: transparent;
+    // }
+    position: relative;
+
+    &::before,
+    &::after {
+        position: absolute;
+        inset: 0;
+        content: "";
+        border-radius: inherit;
+        pointer-events: none;
+    }
+
+    &::before {
+        opacity: var(--state-opacity, 0);
+        background: var(--state-color, #{color.get-varname("primary")});
+        transition: transition.standard("opacity", "short-2");
+        z-index: 1;
+    }
+
+    &::after {
+        border: 1px solid var(--state-outline, transparent);
+        transition: transition.standard("border-color", "short-2");
+        z-index: 0;
+    }
+}
+
+@mixin with-enabled() {
+    &:not(:disabled),
+    &:not(.is-disabled) {
+        @content;
+    }
+}
+
+@mixin with-hover() {
+    &:hover:not(:focus-visible):not(:active):not(.is-dragged):not(
+            :disabled
+        ):not(.is-disabled) {
+        --state-opacity: #{opacity.get-fallback("hover")};
+        @content;
+    }
+}
+
+@mixin with-focus() {
+    &:focus-visible:not(:active):not(.is-dragged):not(:disabled):not(
+            .is-disabled
+        ) {
+        --state-opacity: #{opacity.get-fallback("focus")};
+        --state-outline: var(--state-color);
+        @content;
+    }
+}
+
+@mixin with-pressed() {
+    &:active:not(.is-dragged):not(:disabled):not(.is-disabled) {
+        --state-opacity: #{opacity.get-fallback("pressed")};
+        @content;
+    }
+}
+
+@mixin with-selected() {
+    &.is-selected:not(:hover):not(:focus-visible):not(:active):not(
+            .is-dragged
+        ):not(:disabled):not(.is-disabled) {
+        --state-opacity: #{opacity.get-fallback("selected")};
+        @content;
+    }
+}
+
+@mixin with-dragged() {
+    &.is-dragged:not(:disabled):not(.is-disabled) {
+        --state-opacity: #{opacity.get-fallback("dragged")};
+        @content;
+    }
+}
+
+@mixin with-disabled() {
+    &:disabled,
+    &.is-disabled {
+        --state-opacity: 0;
+        --state-outline: var(--color-disabled);
+        cursor: not-allowed;
+        pointer-events: none;
+        @content;
+    }
+}

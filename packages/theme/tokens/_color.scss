@@ -1,0 +1,151 @@
+@use "sass:map";
+@use "sass:string";
+@use "../references/palette";
+
+$_namespace: "sys-color";
+
+$_light-theme: (
+    primary: palette.get-fallback("olive-10"),
+    on-primary: palette.get-fallback("beige-95"),
+    secondary: palette.get-fallback("purple-80"),
+    on-secondary: palette.get-fallback("purple-20"),
+    tertiary: palette.get-fallback("lime-80"),
+    on-tertiary: palette.get-fallback("olive-10"),
+    error: palette.get-fallback("magenta-60"),
+    on-error: palette.get-fallback("magenta-95"),
+    background: palette.get-fallback("beige-70"),
+    on-background: palette.get-fallback("gray-30"),
+    surface: palette.get-fallback("beige-95"),
+    on-surface: palette.get-fallback("gray-40"),
+    outline: palette.get-fallback("gray-80"),
+    surface-tint: palette.get-fallback("olive-60"),
+    outline-variant: palette.get-fallback("gray-90"),
+    // scrim: palette.get-fallback("olive-10"),
+    inverse-surface: palette.get-fallback("gray-40"),
+    inverse-on-surface: palette.get-fallback("beige-95"),
+    primary-container: palette.get-fallback("olive-90"),
+    on-primary-container: palette.get-fallback("olive-10"),
+    secondary-container: palette.get-fallback("purple-95"),
+    on-secondary-container: palette.get-fallback("purple-20"),
+    tertiary-container: palette.get-fallback("lime-95"),
+    on-tertiary-container: palette.get-fallback("olive-10"),
+    error-container: palette.get-fallback("magenta-90"),
+    on-error-container: palette.get-fallback("magenta-20"),
+    background-variant: palette.get-fallback("beige-95"),
+    on-background-variant: palette.get-fallback("gray-40"),
+    surface-variant: palette.get-fallback("beige-70"),
+    on-surface-variant: palette.get-fallback("gray-30"),
+    disabled: palette.get-fallback("gray-70"),
+    surface-disabled: palette.get-fallback("gray-90"),
+    inverse-primary: palette.get-fallback("lime-80"),
+    on-inverse-primary: palette.get-fallback("olive-10"),
+    success: palette.get-fallback("green-80"),
+    on-success: "255,255,255",
+    warning: palette.get-fallback("yellow-80"),
+    on-warning: "255,255,255",
+    safe: palette.get-fallback("blue-80"),
+    on-safe: "255,255,255",
+    alert: palette.get-fallback("orange-70"),
+    on-alert: "255,255,255",
+    neutral: palette.get-fallback("gray-60"),
+    on-neutral: "255,255,255",
+    safe-variant: palette.get-fallback("violet-60"),
+    on-safe-variant: "255,255,255",
+
+    success-container: palette.get-fallback("green-90"),
+    on-success-container: palette.get-fallback("green-40"),
+    warning-container: palette.get-fallback("yellow-90"),
+    on-warning-container: palette.get-fallback("yellow-40"),
+    safe-container: palette.get-fallback("blue-90"),
+    on-safe-container: palette.get-fallback("blue-40"),
+    alert-container: palette.get-fallback("orange-90"),
+    on-alert-container: palette.get-fallback("orange-40"),
+    neutral-container: palette.get-fallback("gray-80"),
+    on-neutral-container: palette.get-fallback("gray-30"),
+    safe-variant-container: palette.get-fallback("violet-90"),
+    on-safe-variant-container: palette.get-fallback("violet-20"),
+);
+
+$_dark-theme: (
+    primary: palette.get-fallback("lime-80"),
+    on-primary: palette.get-fallback("lime-10"),
+    secondary: palette.get-fallback("purple-50"),
+    on-secondary: palette.get-fallback("purple-10"),
+    tertiary: palette.get-fallback("olive-20"),
+    on-tertiary: palette.get-fallback("lime-60"),
+    error: palette.get-fallback("magenta-80"),
+    on-error: palette.get-fallback("magenta-10"),
+    background: palette.get-fallback("gray-10"),
+    on-background: palette.get-fallback("beige-90"),
+    surface: palette.get-fallback("gray-20"),
+    on-surface: palette.get-fallback("gray-60"),
+    outline: palette.get-fallback("gray-50"),
+    surface-tint: palette.get-fallback("olive-70"),
+    outline-variant: palette.get-fallback("gray-30"),
+    // scrim: palette.get-fallback("olive-10"),
+    inverse-surface: palette.get-fallback("beige-70"),
+    inverse-on-surface: palette.get-fallback("gray-50"),
+    primary-container: palette.get-fallback("olive-20"),
+    on-primary-container: palette.get-fallback("beige-70"),
+    secondary-container: palette.get-fallback("purple-10"),
+    on-secondary-container: palette.get-fallback("purple-95"),
+    tertiary-container: palette.get-fallback("lime-20"),
+    on-tertiary-container: palette.get-fallback("lime-95"),
+    error-container: palette.get-fallback("magenta-10"),
+    on-error-container: palette.get-fallback("magenta-95"),
+    background-variant: palette.get-fallback("gray-20"),
+    on-background-variant: palette.get-fallback("gray-60"),
+    surface-variant: palette.get-fallback("gray-10"),
+    on-surface-variant: palette.get-fallback("beige-95"),
+    disabled: palette.get-fallback("gray-30"),
+    surface-disabled: palette.get-fallback("gray-20"),
+    inverse-primary: palette.get-fallback("olive-10"),
+    on-inverse-primary: palette.get-fallback("beige-80"),
+    success: palette.get-fallback("green-50"),
+    on-success: palette.get-fallback("gray-10"),
+    warning: palette.get-fallback("yellow-60"),
+    on-warning: palette.get-fallback("gray-10"),
+    safe: palette.get-fallback("blue-40"),
+    on-safe: palette.get-fallback("gray-10"),
+    alert: palette.get-fallback("orange-50"),
+    on-alert: palette.get-fallback("gray-10"),
+    neutral: palette.get-fallback("gray-40"),
+    on-neutral: palette.get-fallback("gray-10"),
+    safe-variant: palette.get-fallback("violet-50"),
+    on-safe-variant: palette.get-fallback("gray-10"),
+    success-container: palette.get-fallback("green-20"),
+    on-success-container: palette.get-fallback("green-80"),
+    warning-container: palette.get-fallback("yellow-50"),
+    on-warning-container: palette.get-fallback("yellow-95"),
+    safe-container: palette.get-fallback("blue-30"),
+    on-safe-container: palette.get-fallback("blue-95"),
+    alert-container: palette.get-fallback("orange-30"),
+    on-alert-container: palette.get-fallback("orange-90"),
+    neutral-container: palette.get-fallback("gray-50"),
+    on-neutral-container: palette.get-fallback("gray-90"),
+    safe-variant-container: palette.get-fallback("violet-50"),
+    on-safe-variant-container: palette.get-fallback("violet-95"),
+);
+
+@function get-keys() {
+    @return map.keys($_light-theme);
+}
+
+@function get-alias($property) {
+    @if not map.has-key($_light-theme, $property) {
+        @error "color: invalid property #{$property}";
+    }
+    @return string.unquote("--#{$_namespace}-#{$property}");
+}
+
+@function get-fallback($property, $scheme: "light") {
+    $_theme: if($scheme == "dark", $_dark-theme, $_light-theme);
+    @if not map.has-key($_theme, $property) {
+        @error "color: invalid property #{$property}";
+    }
+    @return string.unquote(map.get($_theme, $property));
+}
+
+@function get-varname($property) {
+    @return string.unquote("rgb(var(#{get-alias($property)}))");
+}

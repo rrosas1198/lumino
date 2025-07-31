@@ -27,5 +27,5 @@
         "editor.defaultFormatter": "biomejs.biome"
     },
     "cSpell.language": "en",
-    "cSpell.words": ["arrayable", "lumino", "nuxt"]
+    "cSpell.words": ["arrayable", "lumino", "nuxt", "typescale"]
 }

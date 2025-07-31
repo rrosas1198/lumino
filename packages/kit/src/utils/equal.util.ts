@@ -1,4 +1,3 @@
-/* eslint-disable ts/ban-ts-comment */
 export function equal<T, V>(valueOne: T, valueTwo: V): boolean {
     // @ts-expect-error
     if (valueOne === valueTwo) {
@@ -29,15 +28,11 @@ export function equal<T, V>(valueOne: T, valueTwo: V): boolean {
         return _areEqualMaps(valueOne, valueTwo);
     }
 
-    if (valueOne instanceof ArrayBuffer && valueTwo instanceof ArrayBuffer) {
-        return _areEqualArrayBuffers(valueOne, valueTwo);
-    }
+    // if (valueOne instanceof ArrayBuffer && valueTwo instanceof ArrayBuffer) {
+    //     return _areEqualArrayBuffers(valueOne, valueTwo);
+    // }
 
-    // if (
-    //     ArrayBuffer.isView(valueOne) &&
-    //     ArrayBuffer.isView(valueTwo) &&
-    //     valueOne.constructor === valueTwo.constructor
-    // ) {
+    // if (ArrayBuffer.isView(valueOne) && ArrayBuffer.isView(valueTwo) && valueOne.constructor === valueTwo.constructor) {
     //     return _areEqualArrayBufferViews(valueOne, valueTwo);
     // }
 
@@ -65,16 +60,15 @@ function _areEqualMaps(mapOne: Map<unknown, unknown>, mapTwo: Map<unknown, unkno
     return true;
 }
 
-function _areEqualArrayBuffers(bufferOne: ArrayBuffer, bufferTwo: ArrayBuffer) {
-    const viewOne = new Uint8Array(bufferOne);
-    const viewTwo = new Uint8Array(bufferTwo);
+// function _areEqualArrayBuffers(bufferOne: ArrayBuffer, bufferTwo: ArrayBuffer) {
+//     const viewOne = new Uint8Array(bufferOne);
+//     const viewTwo = new Uint8Array(bufferTwo);
 
-    if (viewOne.length !== viewTwo.length) return false;
-    return viewOne.every((value, index) => value === viewTwo[index]);
-}
+//     if (viewOne.length !== viewTwo.length) return false;
+//     return viewOne.every((value, index) => value === viewTwo[index]);
+// }
 
-// /** @type {(viewOne: ArrayBufferView, viewTwo: ArrayBufferView) => boolean} */
-// function _areEqualArrayBufferViews(viewOne, viewTwo) {
+// function _areEqualArrayBufferViews(viewOne: ArrayBufferView, viewTwo: ArrayBufferView) {
 //     if (viewOne.byteLength !== viewTwo.byteLength) return false;
 //     const arrayOne = new Uint8Array(viewOne.buffer, viewOne.byteOffset, viewOne.byteLength);
 //     const arrayTwo = new Uint8Array(viewTwo.buffer, viewTwo.byteOffset, viewTwo.byteLength);

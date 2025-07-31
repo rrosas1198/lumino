@@ -1,0 +1,28 @@
+@use "@lumino/theme/theme/transition";
+
+// .list-group {}
+
+.list-group--disabled {
+    opacity: 0.38;
+    pointer-events: none;
+}
+
+.list-group--expanded {
+    .list-group__activator .list-item__append {
+        transform: rotate(180deg);
+    }
+}
+
+.list-group__activator {
+    .list-item__append {
+        transition: transition.emphasized-decelerate("transform", "medium-1");
+    }
+}
+
+.list-group__items {
+    padding-inline-start: 56px;
+
+    .list-group & {
+        padding-inline-start: 24px;
+    }
+}

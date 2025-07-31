@@ -1,0 +1,34 @@
+@use "../references/sizing";
+
+.icon,
+.symbol,
+.pictogram,
+.logotype {
+    display: inline-block;
+    flex: none;
+}
+
+.icon,
+.symbol {
+    fill: currentColor;
+}
+
+.icon {
+    width: var(--icon-width, #{sizing.get-fallback("symbol-extra-small")});
+    height: var(--icon-height, #{sizing.get-fallback("symbol-extra-small")});
+}
+
+.symbol {
+    width: var(--symbol-width, #{sizing.get-fallback("symbol-standard")});
+    height: var(--symbol-height, #{sizing.get-fallback("symbol-standard")});
+}
+
+.pictogram {
+    width: var(--pictogram-width, #{sizing.get-fallback("symbol-standard")});
+    height: var(--pictogram-height, #{sizing.get-fallback("symbol-standard")});
+}
+
+.logotype {
+    width: var(--logotype-width, #{sizing.get-fallback("symbol-standard")});
+    height: var(--logotype-height, #{sizing.get-fallback("symbol-standard")});
+}

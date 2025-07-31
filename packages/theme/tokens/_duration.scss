@@ -1,0 +1,31 @@
+@use "sass:map";
+
+$_duration: (
+    // Short
+    short-1: 50ms,
+    short-2: 100ms,
+    short-3: 150ms,
+    short-4: 200ms,
+    // Medium
+    medium-1: 250ms,
+    medium-2: 300ms,
+    medium-3: 350ms,
+    medium-4: 400ms,
+    // Long
+    long-1: 450ms,
+    long-2: 500ms,
+    long-3: 550ms,
+    long-4: 600ms,
+    // Extra Long
+    extra-long-1: 700ms,
+    extra-long-2: 800ms,
+    extra-long-3: 900ms,
+    extra-long-4: 1000ms
+);
+
+@function get-fallback($property) {
+    @if not map.has-key($_duration, $property) {
+        @error "duration: invalid property #{$property}";
+    }
+    @return map.get($_duration, $property);
+}

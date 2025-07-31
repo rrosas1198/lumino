@@ -1,0 +1,22 @@
+@use "sass:map";
+
+$_breakpoint: (
+    "xs": 0px,
+    "sm": 576px,
+    "md": 768px,
+    "lg": 1080px,
+    "xl": 1280px,
+    "2xl": 1600px,
+    "3xl": 1920px,
+);
+
+@function get-keys() {
+    @return map.keys($_breakpoint);
+}
+
+@function get-fallback($property) {
+    @if not map.has-key($_breakpoint, $property) {
+        @error "breakpoint: invalid property #{$property}";
+    }
+    @return map.get($_breakpoint, $property);
+}

@@ -1,0 +1,82 @@
+@use "@lumino/theme/tokens/color";
+
+.textarea {
+    --textarea-space-with-slots: 0;
+    --textarea-space-without-slots: 16px;
+    display: flex;
+    row-gap: 2px;
+    flex-direction: column;
+}
+
+.textarea .field {
+    --field-height: auto;
+    --field-label-height: 36px;
+
+    &:not(.field--disabled) {
+        &.field--invalid~.message {
+            --textarea-message-color: #{color.get-varname("error")};
+        }
+    }
+
+    &:not(:hover):not(:focus-within):not(.field--disabled) {
+        &:not(.field--invalid)~.message {
+            --textarea-message-color: #{color.get-varname("on-surface")};
+        }
+    }
+
+    &:hover:not(:focus-within):not(.field--disabled) {
+        &:not(.field--invalid)~.message {
+            --textarea-message-color: #{color.get-varname("on-surface-variant")};
+        }
+    }
+
+    &:not(:focus-within):not(.field--disabled) {
+        --input-color: #{color.get-varname("on-surface")};
+    }
+
+    &:focus-within:not(.field--disabled),
+    &.field--focused:not(.field--disabled) {
+        --input-color: #{color.get-varname("on-surface-variant")};
+
+        &:not(.field--invalid)~.message {
+            --textarea-message-color: #{color.get-varname("primary")};
+        }
+    }
+
+    &.field--disabled {
+        --input-color: #{color.get-varname("disabled")};
+
+        ~.message {
+            --textarea-message-color: #{color.get-varname("disabled")};
+        }
+    }
+}
+
+.textarea .field__content {
+    background-color: color.get-varname("surface");
+
+    &:not(:has(.field__prepend)) .textarea__native.input {
+        padding-inline-start: var(--textarea-space-without-slots);
+    }
+
+    &:not(:has(.field__append)) .textarea__native.input {
+        padding-inline-end: var(--textarea-space-without-slots);
+    }
+
+    &:has(.field__prepend) .textarea__native.input {
+        padding-inline-start: var(--textarea-space-with-slots);
+    }
+
+    &:has(.field__append) .textarea__native.input {
+        padding-inline-end: var(--textarea-space-with-slots);
+    }
+}
+
+.textarea__native.input {
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.textarea .message {
+    color: var(--textarea-message-color);
+}

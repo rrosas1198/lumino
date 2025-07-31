@@ -1,8 +1,15 @@
 import type { IMaybePromise } from "@lumino/kit";
-import { buildColorProps, buildFormAssociatedProps, buildListenerProp, buildLoadableProps, buildProps, buildTagProps } from "@lumino/kit";
-import { buildAnchorProps } from "src/anchor";
-import { buildRippleProps } from "src/ripple";
+import {
+    buildAnchorProps,
+    buildColorProps,
+    buildFormAssociatedProps,
+    buildListenerProp,
+    buildLoadableProps,
+    buildProps,
+    buildTagProps
+} from "@lumino/kit";
 import type { ExtractPropTypes, PropType } from "vue";
+import { buildRippleProps } from "../ripple";
 
 export type IButtonType = "button" | "reset" | "submit";
 

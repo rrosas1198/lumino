@@ -1,14 +1,14 @@
 import type { IMaybePromise } from "@lumino/kit";
 import { buildFormAssociatedWithValidationProps, buildInputProps, buildListenerProp, buildProps } from "@lumino/kit";
-import { buildFieldProps } from "src/field";
 import type { ExtractPropTypes } from "vue";
+import { buildFieldProps } from "../field";
 
 export type ITextFieldProps = ExtractPropTypes<ReturnType<typeof buildTextFieldProps>>;
 
 export const buildTextFieldProps = buildProps({
     modelValue: {
         type: String,
-        default: undefined
+        default: ""
     },
     onInput: buildListenerProp<(value: string, event: Event) => IMaybePromise<void>>(),
     "onUpdate:modelValue": buildListenerProp<(value: string) => IMaybePromise<void>>(),

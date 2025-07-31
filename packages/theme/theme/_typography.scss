@@ -1,0 +1,35 @@
+@use "sass:list";
+@use "sass:string";
+@use "../tokens/typescale" as typescale_;
+
+@mixin typescale($property, $excludes: ()) {
+    @if list.index($excludes, "font-family") == null {
+        font-family: typescale_.get-fallback("#{$property}-font");
+    }
+    @if list.index($excludes, "font-size") == null {
+        font-size: typescale_.get-fallback("#{$property}-size");
+    }
+    @if list.index($excludes, "font-weight") == null {
+        font-weight: typescale_.get-fallback("#{$property}-weight");
+    }
+    @if list.index($excludes, "line-height") == null {
+        line-height: typescale_.get-fallback("#{$property}-line-height");
+    }
+    @if list.index($excludes, "letter-spacing") == null {
+        letter-spacing: typescale_.get-fallback("#{$property}-letter-spacing");
+    }
+}
+
+@mixin truncate($overflow: "ellipsis") {
+    overflow: hidden;
+    text-overflow: string.unquote($overflow);
+    white-space: nowrap;
+}
+
+@mixin line-clamp($lines: 2, $orient: "vertical") {
+    display: -webkit-box;
+    overflow: hidden;
+    white-space: normal;
+    -webkit-box-orient: string.unquote($orient);
+    -webkit-line-clamp: $lines;
+}

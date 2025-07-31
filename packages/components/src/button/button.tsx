@@ -1,5 +1,4 @@
-import { useRender } from "@lumino/kit";
-import { useAnchor } from "src/anchor";
+import { useAnchor, useRender } from "@lumino/kit";
 import { defineComponent, resolveComponent } from "vue";
 import { buildButtonProps } from "./button.props";
 
@@ -20,7 +19,7 @@ export const VButton = defineComponent({
         };
 
         useRender(() => {
-            const Element = (anchor.isLink.value ? (anchor.isNuxtLink.value ? resolveComponent("NuxtLink") : "a") : props.tag || "button") as any;
+            const Element = (anchor.isLink.value ? anchor.isNuxtLink.value ? resolveComponent("NuxtLink") : "a" : props.tag || "button") as any;
 
             const isLoading = props.loading && !props.disabled;
             const hasPrepend = isLoading || !!slots.prepend;
@@ -48,13 +47,14 @@ export const VButton = defineComponent({
                     to={anchor.isNuxtLink.value ? anchor.toHref.value : undefined}
                     href={!anchor.isNuxtLink.value ? anchor.toHref.value : undefined}
                     title={props.title}
-                    download={props.link && props.download}
+                    download={props.link ? props.download : undefined}
+                    tabindex={props.disabled ? -1 : 0}
                     aria-live={props.ariaLive}
                     aria-busy={isLoading}
                     aria-label={ariaLabel}
                     aria-disabled={props.loading || props.disabled}
                     class={{
-                        "button": true,
+                        button: true,
                         "button--loading": isLoading,
                         "button--disabled": props.disabled,
                         "button--primary": props.color === "primary",

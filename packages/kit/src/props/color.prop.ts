@@ -1,14 +1,14 @@
-import { buildProps } from "src/build-props";
 import type { PropType } from "vue";
+import { buildProps } from "./prop.factory";
 
-export type IColorValue = "primary" | "secondary";
+export type IColorValue = "primary" | "secondary" | "success" | "surface" | "error";
 
 export type IVariantValue = "standard" | "filled" | "outlined";
 
 export const buildColorProps = buildProps({
     color: {
         type: String as PropType<IColorValue>,
-        values: ["primary", "secondary"],
+        values: ["primary", "secondary", "success", "surface", "error"],
         default: "primary"
     },
     variant: {

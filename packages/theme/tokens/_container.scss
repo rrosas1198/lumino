@@ -1,0 +1,22 @@
+@use "sass:map";
+
+$_container: (
+    xs: ( max-width: 100%, spacing: 8px ),
+    sm: ( max-width: null, spacing: 24px ),
+    md: ( max-width: null, spacing: null ),
+    lg: ( max-width: null, spacing: 40px ),
+    xl: ( max-width: 1240px, spacing: null ),
+    2xl: ( max-width: 1560px, spacing: null ),
+    3xl: ( max-width: 1600px, spacing: null )
+);
+
+@function get-keys() {
+    @return map.keys($_container);
+}
+
+@function get-fallback($property) {
+    @if not map.has-key($_container, $property) {
+        @error "container: invalid property #{$property}";
+    }
+    @return map.get($_container, $property);
+}

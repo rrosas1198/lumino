@@ -1,0 +1,181 @@
+@use "@lumino/theme/tokens/color";
+@use "@lumino/theme/tokens/corner";
+@use "@lumino/theme/tokens/typescale";
+@use "@lumino/theme/theme/media";
+@use "@lumino/theme/theme/transition";
+@use "@lumino/theme/theme/typography";
+
+$field-notch-space-x: 4px;
+$field-outline-prepend-width: 16px;
+
+.field {
+    --field-height: 48px;
+    --field-slot-size: var(--field-height);
+    --field-outline-size: 1px;
+    --field-label-height: 20px;
+    position: relative;
+    /* display: flex;
+    contain: layout; */
+    border-radius: corner.get-fallback("small");
+
+    &:focus-within:not(.field--invalid):not(.field--disabled) {
+        --field-label-color: #{color.get-varname("primary")};
+        --field-outline-color: #{color.get-varname("primary")};
+    }
+
+    &:not(:focus-within):not(.field--invalid):not(.field--disabled),
+    &.field--focused:not(:focus-within):not(.field--invalid):not(.field--disabled) {
+        --field-label-color: #{color.get-varname("on-surface")};
+    }
+
+    &:not(:hover):not(:focus-within):not(.field--invalid):not(.field--disabled) {
+        --field-outline-color: #{color.get-varname("outline")};
+    }
+
+    &:hover:not(:focus-within):not(.field--invalid):not(.field--disabled) {
+        --field-outline-color: #{color.get-varname("on-surface-variant")};
+    }
+
+    &:focus-within,
+    &.field--focused {
+        --field-label-font-size: #{typescale.get-fallback("body-small-size")};
+        --field-label-translate-y: calc(((var(--field-label-height) + var(--field-outline-size) * 2) / 2) * -1);
+        --field-notch-outline-size: 0;
+    }
+
+    &:not(:focus-within):not(.field--focused) {
+        --field-label-font-size: #{typescale.get-fallback("body-large-size")};
+        --field-label-translate-y: calc(((var(--field-height) - var(--field-label-height)) / 2) - var(--field-outline-size));
+        --field-notch-outline-size: var(--field-outline-size);
+    }
+
+    &:not(:focus-within):not(.field--focused):has(.field__prepend) {
+        --field-label-translate-x: calc(var(--field-slot-size) - #{$field-outline-prepend-width});
+    }
+}
+
+.field--invalid {
+    --field-label-color: #{color.get-varname("error")};
+    --field-outline-color: #{color.get-varname("error")};
+
+    .field__label {
+        animation: field-label-shake 250ms 2;
+    }
+}
+
+.field--disabled {
+    --field-label-color: #{color.get-varname("disabled")};
+    --field-outline-color: #{color.get-varname("disabled")};
+    --field-background-color: #{color.get-varname("surface-disabled")};
+}
+
+.field__content {
+    display: flex;
+    align-items: center;
+    border-radius: inherit;
+    background-color: var(--field-background-color, transparent);
+}
+
+.field__prepend,
+.field__append {
+    width: var(--field-slot-size);
+    height: var(--field-slot-size);
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.field__control {
+    height: var(--field-height);
+    flex: 1;
+    border-radius: inherit;
+}
+
+.field__outline {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    contain: layout;
+    align-items: stretch;
+    border-radius: inherit;
+    pointer-events: none;
+}
+
+.field__outline-prepend,
+.field__outline-notch,
+.field__outline-append {
+    border-bottom: var(--field-outline-size) solid var(--field-outline-color);
+
+    @include media.prefers-motion() {
+        transition: transition.linear("border-color");
+    }
+}
+
+.field__outline-prepend,
+.field__outline-append {
+    border-top: var(--field-outline-size) solid var(--field-outline-color);
+}
+
+.field__outline-prepend {
+    flex: 0 0 $field-outline-prepend-width - $field-notch-space-x;
+    border-left: var(--field-outline-size) solid var(--field-outline-color);
+    border-top-left-radius: inherit;
+    border-bottom-left-radius: inherit;
+}
+
+.field__outline-notch {
+    /* max-width: calc(100% - 32px); */
+    flex: none;
+    padding-left: $field-notch-space-x;
+    padding-right: $field-notch-space-x;
+    border-top: var(--field-notch-outline-size) solid var(--field-outline-color);
+}
+
+.field__label {
+    height: var(--field-label-height);
+    display: inline-flex;
+    align-items: center;
+    contain: layout paint;
+    color: var(--field-label-color);
+    font-size: var(--field-label-font-size);
+    transform: translateX(var(--field-label-translate-x, 0)) translateY(var(--field-label-translate-y, 0));
+    transform-origin: top left;
+    user-select: none;
+    @include typography.typescale("body-large", ("font-size", "line-height"));
+    @include typography.truncate();
+
+    @include media.prefers-motion() {
+        transition: transition.linear("color"), transition.standard("font-size"), transition.standard("transform");
+    }
+}
+
+.field__outline-append {
+    flex: 1;
+    border-right: var(--field-outline-size) solid var(--field-outline-color);
+    border-top-right-radius: inherit;
+    border-bottom-right-radius: inherit;
+}
+
+@keyframes field-label-shake {
+    0% {
+        transform: translateX(var(--field-label-translate-x, 0px)) translateY(var(--field-label-translate-y));
+    }
+
+    33% {
+        transform: translateX(calc(var(--field-label-translate-x, 0px) + 4%)) translateY(var(--field-label-translate-y));
+        animation-timing-function: cubic-bezier(0.5, 0, 0.701732, 0.495819);
+    }
+
+    66% {
+        transform: translateX(calc(var(--field-label-translate-x, 0px) - 4%)) translateY(var(--field-label-translate-y));
+        animation-timing-function: cubic-bezier(0.302435, 0.381352, 0.55, 0.956352);
+    }
+
+    100% {
+        transform: translateX(var(--field-label-translate-x, 0px)) translateY(var(--field-label-translate-y));
+    }
+}
