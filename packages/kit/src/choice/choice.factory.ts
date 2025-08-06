@@ -1,7 +1,7 @@
-import { equal } from "src/utils";
+import { equal } from "src/utils/equal.util.js";
 import { computed, nextTick, useModel } from "vue";
-import type { IChoiceValue } from "./choice.interface";
-import type { IChoiceProps } from "./choice.props";
+import type { IChoiceValue } from "./choice.interface.js";
+import type { IChoiceProps } from "./choice.props.js";
 
 export function useChoice(props: IChoiceProps) {
     const modelValue = useModel(props, "modelValue");

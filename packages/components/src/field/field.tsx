@@ -1,6 +1,6 @@
 import { useRender } from "@lumino/kit";
 import { defineComponent, useModel } from "vue";
-import { buildFieldProps } from "./field.props";
+import { buildFieldProps } from "./field.props.js";
 
 export const VField = defineComponent({
     name: "VField",

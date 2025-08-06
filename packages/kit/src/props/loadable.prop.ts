@@ -1,6 +1,6 @@
 import type { PropType } from "vue";
-import type { IAriaLive } from "../types";
-import { buildProps } from "./prop.factory";
+import type { IAriaLive } from "../types/aria.type.js";
+import { buildProps } from "./prop.factory.js";
 
 export const buildLoadableProps = buildProps({
     loading: {

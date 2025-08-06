@@ -1,4 +1,4 @@
-import { LogLevelEnum } from "./logger.enum";
+import { LogLevelEnum } from "./logger.enum.js";
 
 export const ANSI_RESET = "\x1b[0m";
 export const ANSI_CODES: Record<LogLevelEnum, string> = {

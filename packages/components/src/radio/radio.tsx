@@ -1,6 +1,6 @@
 import { useChoice, useRender } from "@lumino/kit";
 import { computed, defineComponent, ref } from "vue";
-import { buildRadioProps } from "./radio.props";
+import { buildRadioProps } from "./radio.props.js";
 
 export const VRadio = defineComponent({
     name: "VRadio",

@@ -1,4 +1,4 @@
-import { buildProps } from "./prop.factory";
+import { buildProps } from "./prop.factory.js";
 
 export const buildFormAssociatedProps = buildProps({
     id: {

@@ -1,7 +1,7 @@
-import { isBrowser } from "src/environment";
+import { isBrowser } from "src/environment.js";
 import type { InjectionKey } from "vue";
 import { inject, nextTick, provide, readonly, ref, watch } from "vue";
-import type { IStackOptions } from "./stack.interface";
+import type { IStackOptions } from "./stack.interface.js";
 
 const stacks = new Map<string, number>();
 const StackToken: InjectionKey<() => number> = Symbol.for("StackToken");

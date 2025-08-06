@@ -1,5 +1,5 @@
 import { type UnwrapRef, shallowRef } from "vue";
-import { LogLevelEnum } from "./logger";
+import { LogLevelEnum } from "./logger/logger.enum.js";
 
 export type ConfigProvider = UnwrapRef<typeof ConfigProvider>;
 

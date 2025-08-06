@@ -1,6 +1,6 @@
 import { useActivator, useHydration, useLazy, useRender, useStack, useTeleport, useTimeout } from "@lumino/kit";
 import { Teleport, Transition, createTextVNode, defineComponent, toRef, useModel, watch } from "vue";
-import { buildSnackbarProps } from "./snackbar.props";
+import { buildSnackbarProps } from "./snackbar.props.js";
 
 export const VSnackbar = defineComponent({
     name: "VSnackbar",

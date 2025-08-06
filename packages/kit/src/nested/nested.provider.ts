@@ -1,6 +1,6 @@
 import { type Ref, provide, ref } from "vue";
-import { NestedToken } from "./nested.constants";
-import type { INestedContext, NestedId } from "./nested.interface";
+import { NestedToken } from "./nested.constants.js";
+import type { INestedContext, NestedId } from "./nested.interface.js";
 
 export interface INestedOptions {
     selected?: Ref<NestedId[]>;

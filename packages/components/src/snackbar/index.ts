@@ -1,4 +1,4 @@
 import "./snackbar.scss";
 
-export * from "./snackbar";
-export * from "./snackbar.props";
+export * from "./snackbar.jsx";
+export * from "./snackbar.props.js";

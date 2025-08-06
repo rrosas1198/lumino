@@ -1,5 +1,5 @@
 import { onMounted, shallowRef } from "vue";
-import { isBrowser } from "./environment";
+import { isBrowser } from "./environment.js";
 
 export function useHydration() {
     const isMounted = shallowRef(false);

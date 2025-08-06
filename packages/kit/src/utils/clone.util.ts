@@ -1,4 +1,4 @@
-import type { IDictionary } from "src/types";
+import type { IDictionary } from "src/types/global.type.js";
 
 export function clone<T>(input: T, clones = new WeakMap()): T {
     if (input === null || typeof input !== "object") {

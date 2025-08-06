@@ -1,7 +1,7 @@
-import { isBrowser } from "src/environment";
-import { debounce } from "src/utils";
+import { isBrowser } from "src/environment.js";
+import { debounce } from "src/utils/debounce.util.js";
 import { nextTick, onScopeDispose, ref, toValue, watch } from "vue";
-import type { IActivatorOptions } from "./activator.interface";
+import type { IActivatorOptions } from "./activator.interface.js";
 
 const UPDATE_FRAME_DURATION = 16;
 

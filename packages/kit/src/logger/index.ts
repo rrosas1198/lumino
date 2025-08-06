@@ -1,2 +1,2 @@
-export * from "./logger.enum";
-export * from "./logger.factory";
+export * from "./logger.enum.js";
+export * from "./logger.factory.js";

@@ -1,4 +1,4 @@
-import type { IArrayable } from "src/types";
+import type { IArrayable } from "src/types/global.type.js";
 import { type Ref, onBeforeUnmount, onMounted, toValue, watch } from "vue";
 
 export interface IClickOutsideOptions {

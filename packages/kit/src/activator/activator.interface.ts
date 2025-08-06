@@ -1,4 +1,4 @@
-import type { INullable } from "src/types";
+import type { INullable } from "src/types/global.type.js";
 import type { ComponentPublicInstance, MaybeRefOrGetter } from "vue";
 
 export interface IActivatorOptions {

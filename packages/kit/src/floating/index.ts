@@ -1,2 +1,2 @@
-export * from "./floating.factory";
-export * from "./floating.interface";
+export * from "./floating.factory.js";
+export * from "./floating.interface.js";

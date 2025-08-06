@@ -1,5 +1,5 @@
+import { buildProps } from "src/props/prop.factory.js";
 import type { ComponentPublicInstance, PropType } from "vue";
-import { buildProps } from "../props";
 
 export const buildActivatorProps = buildProps({
     activator: {

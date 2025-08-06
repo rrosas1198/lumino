@@ -1,4 +1,4 @@
 import "./textarea.scss";
 
-export * from "./textarea";
-export * from "./textarea.props";
+export * from "./textarea.jsx";
+export * from "./textarea.props.js";

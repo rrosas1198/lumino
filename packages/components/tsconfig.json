@@ -1,9 +1,14 @@
 {
     "extends": "../../tsconfig.json",
+    "include": ["./src/**/*"],
     "compilerOptions": {
         "lib": ["DOM"],
+        "baseUrl": "./",
         "jsx": "preserve",
-        "baseUrl": "./"
+        "jsxImportSource": "vue",
+        "paths": {
+            "src/*": ["src/*"]
+        }
     },
     "vueCompilerOptions": {
         "jsxSlots": true

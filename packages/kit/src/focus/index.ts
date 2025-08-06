@@ -1,3 +1,3 @@
-export * from "./grid.focus";
-export * from "./linear.focus";
-export * from "./trap.focus";
+export * from "./grid.focus.js";
+export * from "./linear.focus.js";
+export * from "./trap.focus.js";

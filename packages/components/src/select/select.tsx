@@ -1,10 +1,11 @@
 import { type IItemResolved, debounce, equal, useItems, useRender } from "@lumino/kit";
 import { type ComponentPublicInstance, Fragment, computed, defineComponent, nextTick, onMounted, ref, toRef, useModel } from "vue";
-import { VField } from "../field";
-import { VList, VListItem } from "../list";
-import { VMenu } from "../menu";
-import { SelectArrowDown } from "./select.icons";
-import { buildSelectProps } from "./select.props";
+import { VField } from "../field/field.jsx";
+import { VListItem } from "../list/list-item.jsx";
+import { VList } from "../list/list.jsx";
+import { VMenu } from "../menu/menu.jsx";
+import { SelectArrowDown } from "./select.icons.jsx";
+import { buildSelectProps } from "./select.props.js";
 
 export const VSelect = defineComponent({
     name: "VSelect",
@@ -52,10 +53,10 @@ export const VSelect = defineComponent({
                 if (selectedItems.length === 0) return "";
                 if (selectedItems.length === 1) return selectedItems[0]?.title || "";
                 return `${selectedItems.length} items selected`;
-            } else {
-                const selectedItem = items.value.find(item => equal(item.value, model.value));
-                return selectedItem?.title || "";
             }
+
+            const selectedItem = items.value.find(item => equal(item.value, model.value));
+            return selectedItem?.title || "";
         });
 
         const open = () => {

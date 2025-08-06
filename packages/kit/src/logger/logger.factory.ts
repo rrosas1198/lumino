@@ -1,6 +1,7 @@
-import { isBrowser, isDevelopment } from "src/environment";
-import { ANSI_CODES, ANSI_RESET, BROWSER_STYLES } from "./logger.constants";
-import { LogLevelEnum } from "./logger.enum";
+import { isBrowser } from "src/environment.js";
+import { isDevelopment } from "std-env";
+import { ANSI_CODES, ANSI_RESET, BROWSER_STYLES } from "./logger.constants.js";
+import { LogLevelEnum } from "./logger.enum.js";
 
 export const globalLogLevel = LogLevelEnum.SILENT;
 

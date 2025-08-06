@@ -1,7 +1,7 @@
 import { type IChoiceValue, useChoice, useRender } from "@lumino/kit";
 import { computed, defineComponent, ref, useModel } from "vue";
-import { CheckboxCheckMark } from "./checkbox.icons";
-import { buildCheckboxProps } from "./checkbox.props";
+import { CheckboxCheckMark } from "./checkbox.icons.jsx";
+import { buildCheckboxProps } from "./checkbox.props.js";
 
 export const VCheckbox = defineComponent({
     name: "VCheckbox",

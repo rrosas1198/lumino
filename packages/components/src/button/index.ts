@@ -1,4 +1,4 @@
 import "./button.scss";
 
-export * from "./button";
-export * from "./button.props";
+export * from "./button.jsx";
+export * from "./button.props.js";

@@ -1,7 +1,7 @@
 import { useRender } from "@lumino/kit";
 import { defineComponent, onMounted, ref, useModel } from "vue";
-import { VField } from "../field";
-import { buildTextareaProps } from "./textarea.props";
+import { VField } from "../field/field.jsx";
+import { buildTextareaProps } from "./textarea.props.js";
 
 export const VTextarea = defineComponent({
     name: "VTextarea",

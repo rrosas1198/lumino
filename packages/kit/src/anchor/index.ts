@@ -1,2 +1,2 @@
-export * from "./anchor.factory";
-export * from "./anchor.props";
+export * from "./anchor.factory.js";
+export * from "./anchor.props.js";

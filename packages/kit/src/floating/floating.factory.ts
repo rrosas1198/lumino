@@ -1,7 +1,7 @@
 import { autoUpdate, computePosition, flip, offset } from "@floating-ui/dom";
-import type { IDictionary } from "src/types";
+import type { IDictionary } from "src/types/global.type.js";
 import { onScopeDispose, reactive, watch } from "vue";
-import type { IFloatingOptions } from "./floating.interface";
+import type { IFloatingOptions } from "./floating.interface.js";
 
 export function useFloating({ reference, floating, enabled, strategy, placement, matchWidth }: IFloatingOptions) {
     let cleanup: (() => void) | undefined;

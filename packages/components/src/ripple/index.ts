@@ -1,1 +1,1 @@
-export * from "./ripple.props";
+export * from "./ripple.props.js";

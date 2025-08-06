@@ -1,6 +1,6 @@
 import { useChoice, useRender } from "@lumino/kit";
 import { computed, defineComponent, ref } from "vue";
-import { buildSwitchProps } from "./switch.props";
+import { buildSwitchProps } from "./switch.props.js";
 
 export const VSwitch = defineComponent({
     name: "VSwitch",

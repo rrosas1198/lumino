@@ -1,8 +1,8 @@
+import { useLogger } from "src/logger/logger.factory.js";
 import { withQuery } from "ufo";
 import { computed } from "vue";
 import { useRoute } from "vue-router";
-import { useLogger } from "../logger";
-import type { IAnchorProps } from "./anchor.props";
+import type { IAnchorProps } from "./anchor.props.js";
 
 const logger = useLogger("anchor");
 

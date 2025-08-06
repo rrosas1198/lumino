@@ -1,6 +1,6 @@
-import type { IDictionary, INullable } from "src/types";
+import type { IDictionary, INullable } from "src/types/global.type.js";
+import { clone } from "src/utils/clone.util.js";
 import type { ExtractPropTypes, PropType } from "vue";
-import { clone } from "../utils";
 
 type IPropFactory<T> = (props: IDictionary) => INullable<T>;
 

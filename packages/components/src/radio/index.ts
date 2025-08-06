@@ -1,4 +1,4 @@
 import "./radio.scss";
 
-export * from "./radio";
-export * from "./radio.props";
+export * from "./radio.jsx";
+export * from "./radio.props.js";

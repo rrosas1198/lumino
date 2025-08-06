@@ -1,5 +1,5 @@
 import { type MaybeRef, computed, unref } from "vue";
-import type { IItemPropertyKey, IItemResolved, IItemsOptions } from "./item.interface";
+import type { IItemPropertyKey, IItemResolved, IItemsOptions } from "./item.interface.js";
 
 export function useItems(options: IItemsOptions) {
     const items = computed(() => unref(options.items));

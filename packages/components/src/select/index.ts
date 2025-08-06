@@ -1,4 +1,4 @@
 import "./select.scss";
 
-export * from "./select";
-export * from "./select.props";
+export * from "./select.jsx";
+export * from "./select.props.js";

@@ -1,2 +1,2 @@
-export * from "./click-outside.factory";
-export * from "./timeout.factory";
+export * from "./click-outside.factory.js";
+export * from "./timeout.factory.js";

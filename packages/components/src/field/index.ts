@@ -1,4 +1,4 @@
 import "./field.scss";
 
-export * from "./field";
-export * from "./field.props";
+export * from "./field.jsx";
+export * from "./field.props.js";

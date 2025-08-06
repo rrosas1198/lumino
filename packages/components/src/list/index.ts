@@ -2,9 +2,9 @@ import "./list-group.scss";
 import "./list-item.scss";
 import "./list.scss";
 
-export * from "./list";
-export * from "./list-group";
-export * from "./list-group.props";
-export * from "./list-item";
-export * from "./list-item.props";
-export * from "./list.props";
+export * from "./list-group.jsx";
+export * from "./list-group.props.js";
+export * from "./list-item.jsx";
+export * from "./list-item.props.js";
+export * from "./list.jsx";
+export * from "./list.props.js";

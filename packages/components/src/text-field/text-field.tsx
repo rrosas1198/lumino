@@ -1,7 +1,7 @@
 import { useRender } from "@lumino/kit";
 import { defineComponent, onMounted, ref, useModel } from "vue";
-import { VField } from "../field";
-import { buildTextFieldProps } from "./text-field.props";
+import { VField } from "../field/field.jsx";
+import { buildTextFieldProps } from "./text-field.props.js";
 
 export const VTextField = defineComponent({
     name: "VTextField",

@@ -1,4 +1,4 @@
-import type { IMaybePromise } from "src/types";
+import type { IMaybePromise } from "src/types/global.type.js";
 
 type IDebounceFn = (...params: any[]) => IMaybePromise<unknown>;
 

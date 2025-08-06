@@ -1,6 +1,6 @@
+import { buildProps } from "src/props/prop.factory.js";
 import type { ExtractPropTypes, PropType } from "vue";
-import { buildProps } from "../props";
-import type { IChoiceValue } from "./choice.interface";
+import type { IChoiceValue } from "./choice.interface.js";
 
 export type IChoiceProps = ExtractPropTypes<ReturnType<typeof buildChoiceProps>>;
 

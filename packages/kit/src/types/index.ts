@@ -1,2 +1,2 @@
-export * from "./aria.type";
-export * from "./global.type";
+export * from "./aria.type.js";
+export * from "./global.type.js";

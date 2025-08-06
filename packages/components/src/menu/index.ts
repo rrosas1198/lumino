@@ -1,4 +1,4 @@
 import "./menu.scss";
 
-export * from "./menu";
-export * from "./menu.props";
+export * from "./menu.jsx";
+export * from "./menu.props.js";

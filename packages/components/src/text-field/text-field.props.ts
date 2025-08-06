@@ -1,7 +1,7 @@
 import type { IMaybePromise } from "@lumino/kit";
 import { buildFormAssociatedWithValidationProps, buildInputProps, buildListenerProp, buildProps } from "@lumino/kit";
 import type { ExtractPropTypes } from "vue";
-import { buildFieldProps } from "../field";
+import { buildFieldProps } from "../field/field.props.js";
 
 export type ITextFieldProps = ExtractPropTypes<ReturnType<typeof buildTextFieldProps>>;
 

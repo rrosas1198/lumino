@@ -1,2 +1,2 @@
-export * from "./stack.factory";
-export * from "./stack.interface";
+export * from "./stack.factory.js";
+export * from "./stack.interface.js";

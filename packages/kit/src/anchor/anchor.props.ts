@@ -1,5 +1,5 @@
+import { buildProps } from "src/props/prop.factory.js";
 import type { ExtractPropTypes } from "vue";
-import { buildProps } from "../props";
 
 export type IAnchorProps = ExtractPropTypes<ReturnType<typeof buildAnchorProps>>;
 

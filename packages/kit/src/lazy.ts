@@ -5,7 +5,9 @@ export function useLazy(enabled: Ref<boolean>) {
     const isBooted = shallowRef(false);
     const hasContent = toRef(() => isBooted.value || enabled.value);
 
-    watch(enabled, () => (isBooted.value = true));
+    watch(enabled, () => {
+        isBooted.value = true;
+    });
 
     return { isBooted, hasContent };
 }

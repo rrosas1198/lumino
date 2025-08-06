@@ -1,6 +1,6 @@
 import { useActivator, useClickOutside, useFloating, useFocusTrap, useHydration, useLazy, useRender, useStack, useTeleport } from "@lumino/kit";
 import { Teleport, Transition, computed, createTextVNode, defineComponent, ref, toRef, useModel } from "vue";
-import { buildMenuProps } from "./menu.props";
+import { buildMenuProps } from "./menu.props.js";
 
 export const VMenu = defineComponent({
     name: "VMenu",

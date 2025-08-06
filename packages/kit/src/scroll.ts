@@ -1,5 +1,5 @@
 import { type Ref, onUnmounted, watch } from "vue";
-import { isBrowser } from "./environment";
+import { isBrowser } from "./environment.js";
 
 let lastScrollY = 0;
 let scrollBarWidth = 0;

@@ -1,6 +1,6 @@
 import { useAnchor, useNestedItem, useRender } from "@lumino/kit";
 import { computed, defineComponent, resolveComponent } from "vue";
-import { buildListItemProps } from "./list-item.props";
+import { buildListItemProps } from "./list-item.props.js";
 
 export const VListItem = defineComponent({
     name: "VListItem",

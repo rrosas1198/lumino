@@ -1,4 +1,4 @@
 import "./switch.scss";
 
-export * from "./switch";
-export * from "./switch.props";
+export * from "./switch.jsx";
+export * from "./switch.props.js";

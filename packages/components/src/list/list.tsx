@@ -1,6 +1,6 @@
 import { useLinearFocus, useNested, useRender } from "@lumino/kit";
 import { defineComponent, toRef, useModel } from "vue";
-import { buildListProps } from "./list.props";
+import { buildListProps } from "./list.props.js";
 
 export const VList = defineComponent({
     name: "VList",

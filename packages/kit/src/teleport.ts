@@ -1,5 +1,5 @@
 import { computed } from "vue";
-import { isBrowser } from "./environment";
+import { isBrowser } from "./environment.js";
 
 const CONTAINER_CLASSNAME = "iD36o1mQrIZfQH8";
 

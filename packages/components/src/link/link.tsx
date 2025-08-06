@@ -1,6 +1,6 @@
 import { useAnchor, useRender } from "@lumino/kit";
 import { defineComponent, resolveComponent } from "vue";
-import { buildLinkProps } from "./link.props";
+import { buildLinkProps } from "./link.props.js";
 
 export const VLink = defineComponent({
     name: "VLink",

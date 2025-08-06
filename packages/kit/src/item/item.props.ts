@@ -1,6 +1,6 @@
+import { buildProps } from "src/props/prop.factory.js";
 import type { ExtractPropTypes, PropType } from "vue";
-import { buildProps } from "../props";
-import type { IItemPropertyKey } from "./item.interface";
+import type { IItemPropertyKey } from "./item.interface.js";
 
 export type IItemsProps = ExtractPropTypes<ReturnType<typeof buildItemsProps>>;
 

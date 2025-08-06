@@ -1,6 +1,6 @@
 import { useAnchor, useRender } from "@lumino/kit";
 import { defineComponent, resolveComponent } from "vue";
-import { buildButtonProps } from "./button.props";
+import { buildButtonProps } from "./button.props.js";
 
 export const VButton = defineComponent({
     name: "VButton",

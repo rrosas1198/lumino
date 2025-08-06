@@ -1,4 +1,4 @@
 import "./checkbox.scss";
 
-export * from "./checkbox";
-export * from "./checkbox.props";
+export * from "./checkbox.jsx";
+export * from "./checkbox.props.js";

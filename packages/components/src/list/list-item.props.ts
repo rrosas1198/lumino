@@ -1,7 +1,7 @@
 import type { IMaybePromise } from "@lumino/kit";
 import { buildAnchorProps, buildListenerProp, buildProps, buildTagProps, omit } from "@lumino/kit";
 import type { ExtractPropTypes, PropType } from "vue";
-import { buildRippleProps } from "../ripple";
+import { buildRippleProps } from "../ripple/ripple.props.js";
 
 export type IListItemProps = ExtractPropTypes<ReturnType<typeof buildListItemProps>>;
 

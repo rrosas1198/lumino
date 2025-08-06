@@ -1,6 +1,6 @@
 import { useNestedItem, useRender } from "@lumino/kit";
 import { defineComponent } from "vue";
-import { buildListGroupProps } from "./list-group.props";
+import { buildListGroupProps } from "./list-group.props.js";
 
 export const VListGroup = defineComponent({
     name: "VListGroup",

@@ -9,7 +9,7 @@ import {
     buildTagProps
 } from "@lumino/kit";
 import type { ExtractPropTypes, PropType } from "vue";
-import { buildRippleProps } from "../ripple";
+import { buildRippleProps } from "../ripple/ripple.props.js";
 
 export type IButtonType = "button" | "reset" | "submit";
 

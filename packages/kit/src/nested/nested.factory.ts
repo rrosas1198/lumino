@@ -1,6 +1,6 @@
 import { computed, inject, onBeforeUnmount, onMounted, ref } from "vue";
-import { NestedToken } from "./nested.constants";
-import type { NestedId } from "./nested.interface";
+import { NestedToken } from "./nested.constants.js";
+import type { NestedId } from "./nested.interface.js";
 
 export function useNestedItem(id: NestedId, disabled?: boolean) {
     const itemRef = ref<HTMLElement>();

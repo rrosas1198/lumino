@@ -1,3 +1,3 @@
-export * from "./choice.factory";
-export * from "./choice.interface";
-export * from "./choice.props";
+export * from "./choice.factory.js";
+export * from "./choice.interface.js";
+export * from "./choice.props.js";
